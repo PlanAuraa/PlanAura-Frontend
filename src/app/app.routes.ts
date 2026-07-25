@@ -3,14 +3,19 @@ import { adminGuard } from './core/guards/admin.guard';
 import { authGuard } from './core/guards/auth.guard';
 import { clientGuard } from './core/guards/client.guard';
 import { guestGuard } from './core/guards/guest.guard';
+import { rootRoleGuard } from './core/guards/root-role.guard';
 import { vendorGuard } from './core/guards/vendor.guard';
 
 export const routes: Routes = [
   {
+    // Public entry point: rootRoleGuard only redirects vendors/admins to
+    // their own dashboards. Anonymous visitors and clients both reach
+    // RootPage, which decides between the public landing and the existing
+    // (client-only, unchanged) Home splash — see root-page.ts.
     path: '',
     pathMatch: 'full',
-    canActivate: [authGuard, clientGuard],
-    loadComponent: () => import('./features/home/home').then((m) => m.Home),
+    canActivate: [rootRoleGuard],
+    loadComponent: () => import('./features/root-page/root-page').then((m) => m.RootPage),
   },
   {
     path: 'auth',

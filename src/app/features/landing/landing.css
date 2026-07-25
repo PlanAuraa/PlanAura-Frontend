@@ -1,0 +1,608 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-surface);
+  overflow-x: clip;
+}
+
+/* ==========================================================================
+   Hero — dark, full-bleed. Deliberately unlike Home's light two-column
+   hero-with-photo-collage: this is a tall, single-column, dark-gradient
+   canvas so the two pages read as different destinations at a glance.
+   ========================================================================== */
+
+.landing-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 88vh;
+  padding: var(--space-lg) var(--margin-desktop) var(--space-2xl);
+  background: var(--color-charcoal);
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.landing-hero__blob {
+  z-index: -1;
+}
+
+.landing-hero__blob--one {
+  width: 480px;
+  height: 480px;
+  top: -180px;
+  right: -140px;
+  background: var(--color-primary);
+  opacity: 0.4;
+}
+
+.landing-hero__blob--two {
+  width: 360px;
+  height: 360px;
+  bottom: -140px;
+  left: -80px;
+  background: var(--color-rose-gold);
+  opacity: 0.28;
+  animation-delay: 3s;
+}
+
+.landing-hero__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) 0;
+}
+
+.landing-hero__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-family-display);
+  font-size: var(--font-headline-sm-size);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.landing-hero__nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.landing-hero__nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: var(--font-label-md-size);
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  transition: background var(--dur-fast) var(--ease-smooth);
+}
+
+.landing-hero__nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.landing-hero__nav-cta {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  padding: 0.55rem 1.15rem;
+  background: #ffffff;
+  color: var(--color-charcoal);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: var(--font-label-md-size);
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-smooth);
+}
+
+.landing-hero__nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.landing-hero__content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  gap: var(--space-md);
+}
+
+.landing-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: var(--font-label-sm-size);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.landing-hero__eyebrow .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.landing-hero__headline {
+  font-family: var(--font-family-display);
+  font-size: var(--font-display-lg-size);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: #ffffff;
+}
+
+@media (min-width: 992px) {
+  .landing-hero__headline {
+    font-size: var(--font-display-xl-size);
+  }
+}
+
+.landing-hero__subhead {
+  font-size: var(--font-body-lg-size);
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 560px;
+}
+
+.landing-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.landing-hero__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-full);
+  padding: 1rem 1.75rem;
+  background: #ffffff;
+  color: var(--color-charcoal);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-smooth);
+}
+
+.landing-hero__cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.landing-hero__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  padding: 1rem 1.75rem;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-smooth), border-color var(--dur-fast) var(--ease-smooth);
+}
+
+.landing-hero__cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.landing-hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-label-sm-size);
+}
+
+.landing-hero__trust strong {
+  color: #ffffff;
+}
+
+.landing-hero__trust-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   Value props — a section Home has no equivalent of at all.
+   ========================================================================== */
+
+.landing-values {
+  padding: var(--space-2xl) var(--margin-desktop);
+  background: var(--color-surface);
+}
+
+.landing-values__grid {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--gutter);
+}
+
+.landing-value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.landing-value__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-primary-soft);
+  color: var(--color-primary);
+  font-size: 26px;
+  margin-bottom: 0.25rem;
+}
+
+.landing-value p {
+  color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   Categories — a light chip cloud, not Home's large image-tile carousel.
+   ========================================================================== */
+
+.landing-categories {
+  padding: var(--space-2xl) var(--margin-desktop);
+  background: var(--color-soft-beige);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.landing-categories__header {
+  max-width: var(--container-max);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.landing-section__eyebrow {
+  color: var(--color-rose-gold);
+  font-size: var(--font-label-sm-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.landing-chip-row {
+  max-width: var(--container-max);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.landing-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-subtle-border);
+  color: var(--color-charcoal);
+  text-decoration: none;
+  box-shadow: var(--shadow-xs);
+}
+
+.landing-chip__icon-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.landing-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gradient-primary-soft);
+  color: var(--color-primary);
+  font-size: 16px;
+}
+
+.landing-chip__label {
+  font-size: var(--font-label-md-size);
+  font-weight: 600;
+}
+
+.landing-chip__count {
+  color: var(--color-secondary);
+  font-size: var(--font-label-sm-size);
+}
+
+.landing-categories__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary-hover);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.landing-categories__cta:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   How it works — horizontal numbered timeline, not Home's boxed card grid.
+   ========================================================================== */
+
+.landing-timeline-section {
+  padding: var(--space-2xl) var(--margin-desktop);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.landing-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.landing-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gutter);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.landing-timeline::before {
+  content: '';
+  position: absolute;
+  top: 26px;
+  left: calc(12.5% + 26px);
+  right: calc(12.5% + 26px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-subtle-border) 0%, var(--color-primary-container) 50%, var(--color-subtle-border) 100%);
+  z-index: 0;
+}
+
+.landing-timeline__step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.landing-timeline__marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  font-family: var(--font-family-display);
+  font-size: var(--font-headline-sm-size);
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 0.25rem;
+}
+
+.landing-timeline__step p {
+  color: var(--color-secondary);
+  max-width: 220px;
+}
+
+@media (max-width: 800px) {
+  .landing-timeline {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding-left: var(--space-md);
+  }
+
+  .landing-timeline::before {
+    top: 0;
+    bottom: 0;
+    left: 25px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, var(--color-subtle-border) 0%, var(--color-primary-container) 50%, var(--color-subtle-border) 100%);
+  }
+
+  .landing-timeline__step {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-md);
+  }
+
+  .landing-timeline__marker {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   Final CTA — full-bleed edge-to-edge band (no inset card, unlike Home's).
+   ========================================================================== */
+
+.landing-cta {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl) var(--space-xl);
+  background: var(--gradient-primary);
+  overflow: hidden;
+}
+
+.landing-cta__blob {
+  width: 360px;
+  height: 360px;
+  top: -50%;
+  left: -10%;
+  background: #ffffff;
+  opacity: 0.18;
+  z-index: -1;
+}
+
+.landing-cta h2,
+.landing-cta p {
+  color: #ffffff;
+}
+
+.landing-cta p {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 480px;
+}
+
+.landing-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-full);
+  padding: 1rem 2rem;
+  background: var(--color-charcoal);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-smooth);
+}
+
+.landing-cta__button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ==========================================================================
+   Footer — dark, bookends the dark hero (Home's footer is light throughout).
+   ========================================================================== */
+
+.landing-footer {
+  padding: var(--space-lg) var(--margin-desktop);
+  background: var(--color-charcoal);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.landing-footer__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.landing-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-family-display);
+  font-size: var(--font-headline-sm-size);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.landing-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.landing-footer__links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: var(--font-label-md-size);
+  transition: color var(--dur-fast) var(--ease-smooth);
+}
+
+.landing-footer__links a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.landing-footer__copy {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--font-label-sm-size);
+  text-align: center;
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .landing-hero,
+  .landing-values,
+  .landing-categories,
+  .landing-timeline-section,
+  .landing-footer {
+    padding-left: var(--margin-mobile);
+    padding-right: var(--margin-mobile);
+  }
+
+  .landing-cta {
+    padding-left: var(--margin-mobile);
+    padding-right: var(--margin-mobile);
+  }
+}

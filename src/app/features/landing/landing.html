@@ -1,0 +1,166 @@
+<div class="landing-page">
+  <!-- ============ Hero (dark, full-bleed — deliberately unlike Home's light 2-col hero) ============ -->
+  <section class="landing-hero">
+    <nav class="landing-hero__nav">
+      <span class="landing-hero__brand">
+        <span class="material-symbols-outlined" aria-hidden="true">celebration</span>
+        Planura
+      </span>
+      <div class="landing-hero__nav-actions">
+        <a class="landing-hero__nav-link" routerLink="/auth">Log In</a>
+        <a class="landing-hero__nav-cta" routerLink="/auth">Get Started</a>
+      </div>
+    </nav>
+
+    <span class="floating-blob landing-hero__blob landing-hero__blob--one" aria-hidden="true"></span>
+    <span class="floating-blob landing-hero__blob landing-hero__blob--two" aria-hidden="true"></span>
+
+    <div class="landing-hero__content">
+      <span class="landing-hero__eyebrow animate-fade-down">
+        <span class="material-symbols-outlined">auto_awesome</span>
+        Every occasion, beautifully planned
+      </span>
+
+      <h1 class="landing-hero__headline animate-fade-up stagger-1">
+        Your next event, planned without the chaos
+      </h1>
+      <p class="landing-hero__subhead animate-fade-up stagger-2">
+        Planura brings trusted vendors, planning tools, and secure booking into one place —
+        so you can spend less time coordinating and more time celebrating.
+      </p>
+
+      <div class="landing-hero__actions animate-fade-up stagger-3">
+        <a class="landing-hero__cta-primary" routerLink="/auth">
+          <span class="material-symbols-outlined">add</span>
+          Create Your Free Account
+        </a>
+        <a class="landing-hero__cta-secondary" routerLink="/auth">Log In</a>
+      </div>
+
+      <div class="landing-hero__trust animate-fade-up stagger-4">
+        <span><strong>1,200+</strong> vetted vendors</span>
+        <span class="landing-hero__trust-dot" aria-hidden="true"></span>
+        <span><strong>8,500+</strong> events planned</span>
+        <span class="landing-hero__trust-dot" aria-hidden="true"></span>
+        <span><strong>4.9/5</strong> average rating</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Value props — a section Home doesn't have at all ============ -->
+  <section class="landing-values">
+    <div class="landing-values__grid">
+      <div class="landing-value animate-fade-up stagger-1">
+        <span class="landing-value__icon material-symbols-outlined" aria-hidden="true">verified</span>
+        <h3 class="text-headline-sm">Curated &amp; Verified Vendors</h3>
+        <p class="text-body-md">Every vendor is reviewed before they can list — no surprises on your event day.</p>
+      </div>
+      <div class="landing-value animate-fade-up stagger-2">
+        <span class="landing-value__icon material-symbols-outlined" aria-hidden="true">dashboard_customize</span>
+        <h3 class="text-headline-sm">Everything in One Place</h3>
+        <p class="text-body-md">Build your event plan, message vendors, and track bookings without juggling spreadsheets.</p>
+      </div>
+      <div class="landing-value animate-fade-up stagger-3">
+        <span class="landing-value__icon material-symbols-outlined" aria-hidden="true">encrypted</span>
+        <h3 class="text-headline-sm">Secure, Simple Payments</h3>
+        <p class="text-body-md">Book and pay vendors safely through Planura — no cash, no guesswork.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Categories — light chip cloud, not Home's image-tile carousel ============ -->
+  @if (categories().length > 0) {
+    <section class="landing-categories">
+      <div class="landing-categories__header animate-fade-up">
+        <span class="landing-section__eyebrow">Every kind of celebration</span>
+        <h2 class="text-headline-md">Find the right team for your event</h2>
+      </div>
+
+      <div class="landing-chip-row">
+        @for (category of categories(); track category.id) {
+          <a class="landing-chip hover-lift animate-fade-up" routerLink="/auth">
+            @if (category.iconUrl && !failedCategoryImages().has(category.id)) {
+              <img
+                [src]="category.iconUrl"
+                alt=""
+                class="landing-chip__icon-img"
+                (error)="onCategoryImageError(category.id)"
+              />
+            } @else {
+              <span class="material-symbols-outlined landing-chip__icon" aria-hidden="true">
+                {{ categoryIcon(category.slug) }}
+              </span>
+            }
+            <span class="landing-chip__label">{{ category.nameEn }}</span>
+            @if (category.vendorCount > 0) {
+              <span class="landing-chip__count">{{ category.vendorCount }}</span>
+            }
+          </a>
+        }
+      </div>
+
+      <a class="landing-categories__cta" routerLink="/auth">
+        Sign up to browse vendors in these categories
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+      </a>
+    </section>
+  }
+
+  <!-- ============ How it works — horizontal numbered timeline, not Home's card grid ============ -->
+  <section class="landing-timeline-section">
+    <div class="landing-section__header animate-fade-up">
+      <span class="landing-section__eyebrow">Simple, start to finish</span>
+      <h2 class="text-headline-md">How Planura works</h2>
+    </div>
+
+    <ol class="landing-timeline">
+      <li class="landing-timeline__step animate-fade-up stagger-1">
+        <span class="landing-timeline__marker">1</span>
+        <h3 class="text-headline-sm">Sign up</h3>
+        <p class="text-body-md">Create a free account — no commitment required.</p>
+      </li>
+      <li class="landing-timeline__step animate-fade-up stagger-2">
+        <span class="landing-timeline__marker">2</span>
+        <h3 class="text-headline-sm">Discover</h3>
+        <p class="text-body-md">Browse trusted vendors by category, city, and budget.</p>
+      </li>
+      <li class="landing-timeline__step animate-fade-up stagger-3">
+        <span class="landing-timeline__marker">3</span>
+        <h3 class="text-headline-sm">Plan &amp; book</h3>
+        <p class="text-body-md">Build your event plan and book vendors with secure payments.</p>
+      </li>
+      <li class="landing-timeline__step animate-fade-up stagger-4">
+        <span class="landing-timeline__marker">4</span>
+        <h3 class="text-headline-sm">Celebrate</h3>
+        <p class="text-body-md">Sit back and enjoy an event brought to life by the right team.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ Final CTA — full-bleed edge-to-edge band, no inset card like Home's ============ -->
+  <section class="landing-cta">
+    <span class="floating-blob landing-cta__blob" aria-hidden="true"></span>
+    <h2 class="text-headline-md">Ready to start planning?</h2>
+    <p class="text-body-md">Join Planura free and start connecting with vendors today.</p>
+    <a class="landing-cta__button" routerLink="/auth">
+      <span class="material-symbols-outlined">add</span>
+      Create Your Free Account
+    </a>
+  </section>
+
+  <!-- ============ Footer — dark, bookends the dark hero ============ -->
+  <footer class="landing-footer">
+    <div class="landing-footer__inner">
+      <span class="landing-footer__brand">
+        <span class="material-symbols-outlined" aria-hidden="true">celebration</span>
+        Planura
+      </span>
+      <nav class="landing-footer__links" aria-label="Footer">
+        <a routerLink="/auth">Log In</a>
+        <a routerLink="/terms">Terms</a>
+        <a routerLink="/privacy">Privacy</a>
+      </nav>
+    </div>
+    <p class="landing-footer__copy">&copy; Planura. All rights reserved.</p>
+  </footer>
+</div>
