@@ -30,7 +30,7 @@
               <span>{{ p.fullName.charAt(0) }}</span>
             }
           </div>
-          <button class="cp-hero__avatar-edit" type="button" title="Change photo" (click)="openEdit()">
+          <button class="cp-hero__avatar-edit" type="button" [title]="'profile.changePhoto' | translate" (click)="openEdit()">
             <span class="material-symbols-outlined">photo_camera</span>
           </button>
         </div>
@@ -38,7 +38,7 @@
         <div class="cp-hero__text">
           <span class="cp-hero__badge">
             <span class="material-symbols-outlined">verified</span>
-            Client
+            {{ 'profile.roleBadge' | translate }}
           </span>
           <h1 class="cp-hero__name">{{ p.fullName }}</h1>
           <p class="cp-hero__email">
@@ -49,7 +49,7 @@
 
         <ui-button class="cp-hero__edit-btn" variant="outline" [fullWidth]="false" (click)="openEdit()">
           <span class="material-symbols-outlined">edit</span>
-          Edit Profile
+          {{ 'profile.editProfile' | translate }}
         </ui-button>
       </div>
     </section>
@@ -58,8 +58,8 @@
     <section class="cp-completion card-luxe animate-fade-up stagger-1">
       <div class="cp-completion__top">
         <div class="cp-completion__heading">
-          <h3 class="text-headline-sm">Profile Completion</h3>
-          <p class="text-body-md">Complete your profile to get the most out of Planura.</p>
+          <h3 class="text-headline-sm">{{ 'profile.completion.title' | translate }}</h3>
+          <p class="text-body-md">{{ 'profile.completion.subtitle' | translate }}</p>
         </div>
         <span class="cp-completion__percent" [class.cp-completion__percent--full]="completionPercent() === 100">
           {{ completionPercent() }}%
@@ -72,17 +72,17 @@
 
       @if (missingItems().length > 0) {
         <div class="cp-completion__missing">
-          @for (item of missingItems(); track item.label) {
+          @for (item of missingItems(); track item.labelKey) {
             <button class="cp-completion__chip" type="button" (click)="openEdit()">
               <span class="material-symbols-outlined">add</span>
-              {{ item.label }}
+              {{ item.labelKey | translate }}
             </button>
           }
         </div>
       } @else {
         <p class="cp-completion__done">
           <span class="material-symbols-outlined">check_circle</span>
-          Your profile is all set — nice work!
+          {{ 'profile.completion.allSet' | translate }}
         </p>
       }
     </section>
@@ -92,13 +92,13 @@
       <section class="cp-card card-luxe hover-lift animate-fade-up stagger-2">
         <div class="cp-card__header">
           <span class="cp-card__icon material-symbols-outlined" aria-hidden="true">person</span>
-          <h3 class="text-headline-sm">Personal Information</h3>
+          <h3 class="text-headline-sm">{{ 'profile.personalInfo' | translate }}</h3>
         </div>
 
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">badge</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">Full Name</span>
+            <span class="cp-field__label">{{ 'profile.field.fullName' | translate }}</span>
             <span class="cp-field__value">{{ p.fullName }}</span>
           </div>
         </div>
@@ -106,13 +106,13 @@
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">cake</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">Date of Birth</span>
+            <span class="cp-field__label">{{ 'profile.field.dateOfBirth' | translate }}</span>
             @if (p.dateOfBirth) {
               <span class="cp-field__value">{{ p.dateOfBirth | date: 'mediumDate' }}</span>
             } @else {
               <button class="cp-field__add" type="button" (click)="openEdit()">
                 <span class="material-symbols-outlined">add</span>
-                Add date of birth
+                {{ 'profile.add.dateOfBirth' | translate }}
               </button>
             }
           </div>
@@ -122,13 +122,13 @@
       <section class="cp-card card-luxe hover-lift animate-fade-up stagger-3">
         <div class="cp-card__header">
           <span class="cp-card__icon material-symbols-outlined" aria-hidden="true">contact_mail</span>
-          <h3 class="text-headline-sm">Contact Information</h3>
+          <h3 class="text-headline-sm">{{ 'profile.contactInfo' | translate }}</h3>
         </div>
 
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">mail</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">Email Address</span>
+            <span class="cp-field__label">{{ 'profile.field.email' | translate }}</span>
             <span class="cp-field__value">{{ p.email }}</span>
           </div>
         </div>
@@ -136,13 +136,13 @@
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">call</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">Phone Number</span>
+            <span class="cp-field__label">{{ 'profile.field.phone' | translate }}</span>
             @if (p.phoneNumber) {
               <span class="cp-field__value">{{ p.phoneNumber }}</span>
             } @else {
               <button class="cp-field__add" type="button" (click)="openEdit()">
                 <span class="material-symbols-outlined">add</span>
-                Add phone number
+                {{ 'profile.add.phone' | translate }}
               </button>
             }
           </div>
@@ -151,13 +151,13 @@
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">location_on</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">City</span>
+            <span class="cp-field__label">{{ 'profile.field.city' | translate }}</span>
             @if (p.city) {
               <span class="cp-field__value">{{ p.city }}</span>
             } @else {
               <button class="cp-field__add" type="button" (click)="openEdit()">
                 <span class="material-symbols-outlined">add</span>
-                Add city
+                {{ 'profile.add.city' | translate }}
               </button>
             }
           </div>
@@ -167,13 +167,13 @@
       <section class="cp-card card-luxe hover-lift animate-fade-up stagger-4">
         <div class="cp-card__header">
           <span class="cp-card__icon material-symbols-outlined" aria-hidden="true">account_circle</span>
-          <h3 class="text-headline-sm">Account Details</h3>
+          <h3 class="text-headline-sm">{{ 'profile.accountDetails' | translate }}</h3>
         </div>
 
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">calendar_month</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">Member Since</span>
+            <span class="cp-field__label">{{ 'profile.field.memberSince' | translate }}</span>
             <span class="cp-field__value">{{ p.createdAt | date: 'mediumDate' }}</span>
           </div>
         </div>
@@ -181,18 +181,18 @@
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">how_to_reg</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">Account Type</span>
-            <span class="cp-field__value">Client</span>
+            <span class="cp-field__label">{{ 'profile.field.accountType' | translate }}</span>
+            <span class="cp-field__value">{{ 'profile.value.client' | translate }}</span>
           </div>
         </div>
 
         <div class="cp-field">
           <span class="cp-field__icon material-symbols-outlined" aria-hidden="true">toggle_on</span>
           <div class="cp-field__body">
-            <span class="cp-field__label">Status</span>
+            <span class="cp-field__label">{{ 'profile.field.status' | translate }}</span>
             <span class="cp-status-badge">
               <span class="cp-status-badge__dot" aria-hidden="true"></span>
-              Active
+              {{ 'profile.value.active' | translate }}
             </span>
           </div>
         </div>
@@ -201,7 +201,7 @@
       <section class="cp-card card-luxe animate-fade-up stagger-5">
         <div class="cp-card__header">
           <span class="cp-card__icon material-symbols-outlined" aria-hidden="true">lock</span>
-          <h3 class="text-headline-sm">Security</h3>
+          <h3 class="text-headline-sm">{{ 'profile.security' | translate }}</h3>
         </div>
 
         <form class="cp-password-form" [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
@@ -210,52 +210,52 @@
             [details]="passwordError()?.fieldErrors ?? []"
           />
           <ui-password-field
-            label="Current Password"
+            [label]="'profile.field.currentPassword' | translate"
             formControlName="currentPassword"
             [errorMessage]="
               passwordForm.get('currentPassword')!.touched &&
               passwordForm.get('currentPassword')!.invalid
-                ? 'Current password is required.'
+                ? ('profile.validation.currentPasswordRequired' | translate)
                 : null
             "
           />
           <ui-password-field
-            label="New Password"
+            [label]="'profile.field.newPassword' | translate"
             formControlName="password"
             [errorMessage]="
               passwordForm.get('password')!.touched && passwordForm.get('password')!.invalid
-                ? 'Password must be at least 8 characters, with an uppercase letter, a lowercase letter, and a digit.'
+                ? ('profile.validation.newPassword' | translate)
                 : null
             "
           />
           <ui-password-field
-            label="Confirm New Password"
+            [label]="'profile.field.confirmPassword' | translate"
             formControlName="confirmPassword"
-            [errorMessage]="passwordMismatch() ? 'Passwords do not match.' : null"
+            [errorMessage]="passwordMismatch() ? ('profile.validation.passwordMismatch' | translate) : null"
           />
-          <ui-button type="submit" [loading]="changingPassword()">Change Password</ui-button>
+          <ui-button type="submit" [loading]="changingPassword()">{{ 'profile.changePassword' | translate }}</ui-button>
         </form>
       </section>
 
       <section class="cp-card cp-card--soon card-luxe animate-fade-up stagger-6">
         <div class="cp-card__header">
           <span class="cp-card__icon material-symbols-outlined" aria-hidden="true">tune</span>
-          <h3 class="text-headline-sm">Preferences</h3>
-          <span class="cp-card__soon-badge">Coming soon</span>
+          <h3 class="text-headline-sm">{{ 'profile.preferences' | translate }}</h3>
+          <span class="cp-card__soon-badge">{{ 'profile.comingSoon' | translate }}</span>
         </div>
 
         <div class="cp-preference">
           <div class="cp-preference__text">
-            <span class="cp-field__label">Email Notifications</span>
-            <span class="cp-preference__hint">Booking updates and reminders</span>
+            <span class="cp-field__label">{{ 'profile.pref.emailNotifications' | translate }}</span>
+            <span class="cp-preference__hint">{{ 'profile.pref.emailNotificationsHint' | translate }}</span>
           </div>
           <span class="cp-toggle cp-toggle--disabled" aria-hidden="true"><span class="cp-toggle__thumb"></span></span>
         </div>
 
         <div class="cp-preference">
           <div class="cp-preference__text">
-            <span class="cp-field__label">SMS Reminders</span>
-            <span class="cp-preference__hint">Event day notifications</span>
+            <span class="cp-field__label">{{ 'profile.pref.sms' | translate }}</span>
+            <span class="cp-preference__hint">{{ 'profile.pref.smsHint' | translate }}</span>
           </div>
           <span class="cp-toggle cp-toggle--disabled" aria-hidden="true"><span class="cp-toggle__thumb"></span></span>
         </div>
@@ -270,10 +270,10 @@
         <div class="cp-edit-modal__header">
           <span class="cp-edit-modal__icon material-symbols-outlined" aria-hidden="true">edit</span>
           <div class="cp-edit-modal__heading">
-            <h3 class="text-headline-sm">Edit Profile</h3>
-            <p class="text-body-md">Update your personal information</p>
+            <h3 class="text-headline-sm">{{ 'profile.edit.title' | translate }}</h3>
+            <p class="text-body-md">{{ 'profile.edit.subtitle' | translate }}</p>
           </div>
-          <button class="icon-btn" type="button" title="Close" (click)="closeEdit()">
+          <button class="icon-btn" type="button" [title]="'common.close' | translate" (click)="closeEdit()">
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>
@@ -281,40 +281,40 @@
         <form class="cp-edit-form" [formGroup]="form" (ngSubmit)="save()">
           <div class="cp-edit-form__grid">
             <ui-text-field
-              label="Full Name"
+              [label]="'profile.field.fullName' | translate"
               formControlName="fullName"
               [errorMessage]="
                 form.controls.fullName.touched && form.controls.fullName.invalid
-                  ? 'Full name must be between 2 and 150 characters.'
+                  ? ('profile.validation.fullName' | translate)
                   : null
               "
             />
             <ui-text-field
-              label="Email Address"
+              [label]="'profile.field.email' | translate"
               type="email"
               formControlName="email"
               [errorMessage]="
                 form.controls.email.touched && form.controls.email.invalid
-                  ? 'A valid email address is required.'
+                  ? ('profile.validation.email' | translate)
                   : null
               "
             />
-            <ui-text-field label="Phone Number" type="tel" formControlName="phoneNumber" />
-            <ui-text-field label="City" formControlName="city" />
-            <ui-text-field label="Date of Birth" type="date" formControlName="dateOfBirth" />
+            <ui-text-field [label]="'profile.field.phone' | translate" type="tel" formControlName="phoneNumber" />
+            <ui-text-field [label]="'profile.field.city' | translate" formControlName="city" />
+            <ui-text-field [label]="'profile.field.dateOfBirth' | translate" type="date" formControlName="dateOfBirth" />
           </div>
 
           <ui-file-dropzone
-            label="Change profile picture"
+            [label]="'profile.edit.changePicture' | translate"
             formControlName="avatarFile"
-            hint="PNG or JPG, up to 2 MB"
+            [hint]="'profile.edit.pictureHint' | translate"
           />
 
           <div class="cp-edit-form__actions">
             <ui-button variant="outline" type="button" [disabled]="saving()" (click)="closeEdit()">
-              Cancel
+              {{ 'common.cancel' | translate }}
             </ui-button>
-            <ui-button type="submit" [loading]="saving()">Save Changes</ui-button>
+            <ui-button type="submit" [loading]="saving()">{{ 'profile.edit.save' | translate }}</ui-button>
           </div>
         </form>
       </div>

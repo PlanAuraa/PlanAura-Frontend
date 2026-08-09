@@ -72,6 +72,16 @@
     <h2 class="text-headline-md client-topbar__title">{{ pageTitle() }}</h2>
 
     <div class="client-topbar__actions">
+      <button
+        class="client-topbar__lang"
+        type="button"
+        (click)="language.toggle()"
+        [attr.aria-label]="'lang.switch' | translate"
+        [title]="'lang.switch' | translate"
+      >
+        {{ language.currentLang() === 'en' ? 'ع' : 'EN' }}
+      </button>
+
       <app-notification-bell />
 
       @if (currentUser(); as user) {

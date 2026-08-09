@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AlertBanner } from '../../../shared/ui/alert-banner/alert-banner';
 import { Button } from '../../../shared/ui/button/button';
 import { FileDropzone } from '../../../shared/ui/file-dropzone/file-dropzone';
@@ -15,7 +16,8 @@ import { passwordsMatchValidator } from '../../../shared/validators/password-mat
 import { notifyError, notifySuccess } from '../../../shared/utils/notify';
 
 interface ChecklistItem {
-  label: string;
+  /** i18n key resolved in the template with the translate pipe. */
+  labelKey: string;
   icon: string;
   done: boolean;
 }
@@ -37,7 +39,7 @@ interface ChecklistItem {
 @Component({
   selector: 'app-client-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, TextField, PasswordField, FileDropzone, Button, AlertBanner, DatePipe],
+  imports: [ReactiveFormsModule, TextField, PasswordField, FileDropzone, Button, AlertBanner, DatePipe, TranslatePipe],
   templateUrl: './client-profile.html',
   styleUrl: './client-profile.css',
 })
@@ -46,6 +48,7 @@ export class ClientProfileComponent implements OnInit {
   private readonly clientProfileService = inject(ClientProfileService);
   private readonly clientProfileState = inject(ClientProfileStateService);
   private readonly authService = inject(AuthService);
+  private readonly translate = inject(TranslateService);
 
   protected readonly profile = signal<ClientProfile | null>(null);
   protected readonly loading = signal(false);
@@ -82,12 +85,12 @@ export class ClientProfileComponent implements OnInit {
   protected readonly checklist = computed<ChecklistItem[]>(() => {
     const p = this.profile();
     return [
-      { label: 'Profile photo', icon: 'photo_camera', done: !!p?.avatarUrl },
-      { label: 'Full name', icon: 'badge', done: !!p?.fullName },
-      { label: 'Email address', icon: 'mail', done: !!p?.email },
-      { label: 'Phone number', icon: 'call', done: !!p?.phoneNumber },
-      { label: 'City', icon: 'location_on', done: !!p?.city },
-      { label: 'Date of birth', icon: 'cake', done: !!p?.dateOfBirth },
+      { labelKey: 'profile.checklist.photo', icon: 'photo_camera', done: !!p?.avatarUrl },
+      { labelKey: 'profile.checklist.fullName', icon: 'badge', done: !!p?.fullName },
+      { labelKey: 'profile.checklist.email', icon: 'mail', done: !!p?.email },
+      { labelKey: 'profile.checklist.phone', icon: 'call', done: !!p?.phoneNumber },
+      { labelKey: 'profile.checklist.city', icon: 'location_on', done: !!p?.city },
+      { labelKey: 'profile.checklist.dateOfBirth', icon: 'cake', done: !!p?.dateOfBirth },
     ];
   });
 
@@ -151,11 +154,11 @@ export class ClientProfileComponent implements OnInit {
         this.clientProfileState.refresh();
         this.saving.set(false);
         this.editModalOpen.set(false);
-        notifySuccess('Profile updated successfully.');
+        notifySuccess(this.translate.instant('profile.toast.updated') as string);
       },
       error: (err: AppError) => {
         this.saving.set(false);
-        notifyError('Could not update profile', err.message);
+        notifyError(this.translate.instant('profile.toast.updateFailed') as string, err.message);
       },
     });
   }
@@ -180,12 +183,12 @@ export class ClientProfileComponent implements OnInit {
         next: () => {
           this.changingPassword.set(false);
           this.passwordForm.reset();
-          notifySuccess('Password changed successfully.');
+          notifySuccess(this.translate.instant('profile.toast.passwordChanged') as string);
         },
         error: (err: AppError) => {
           this.changingPassword.set(false);
           this.passwordError.set(err);
-          notifyError('Could not change password', err.message);
+          notifyError(this.translate.instant('profile.toast.passwordFailed') as string, err.message);
         },
       });
   }

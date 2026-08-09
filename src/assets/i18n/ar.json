@@ -1,0 +1,84 @@
+{
+  "lang": {
+    "switch": "تغيير اللغة",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "common": {
+    "cancel": "إلغاء",
+    "close": "إغلاق"
+  },
+  "profile": {
+    "roleBadge": "عميل",
+    "editProfile": "تعديل الملف الشخصي",
+    "changePhoto": "تغيير الصورة",
+    "completion": {
+      "title": "اكتمال الملف الشخصي",
+      "subtitle": "أكمل ملفك الشخصي لتحقيق أقصى استفادة من Planura.",
+      "allSet": "ملفك الشخصي مكتمل — عمل رائع!"
+    },
+    "checklist": {
+      "photo": "صورة الملف الشخصي",
+      "fullName": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "city": "المدينة",
+      "dateOfBirth": "تاريخ الميلاد"
+    },
+    "personalInfo": "المعلومات الشخصية",
+    "contactInfo": "معلومات الاتصال",
+    "accountDetails": "تفاصيل الحساب",
+    "security": "الأمان",
+    "preferences": "التفضيلات",
+    "comingSoon": "قريبًا",
+    "field": {
+      "fullName": "الاسم الكامل",
+      "dateOfBirth": "تاريخ الميلاد",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "city": "المدينة",
+      "memberSince": "عضو منذ",
+      "accountType": "نوع الحساب",
+      "status": "الحالة",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة"
+    },
+    "add": {
+      "dateOfBirth": "إضافة تاريخ الميلاد",
+      "phone": "إضافة رقم الهاتف",
+      "city": "إضافة المدينة"
+    },
+    "value": {
+      "client": "عميل",
+      "active": "نشط"
+    },
+    "changePassword": "تغيير كلمة المرور",
+    "pref": {
+      "emailNotifications": "إشعارات البريد الإلكتروني",
+      "emailNotificationsHint": "تحديثات الحجز والتذكيرات",
+      "sms": "تذكيرات الرسائل النصية",
+      "smsHint": "إشعارات يوم المناسبة"
+    },
+    "edit": {
+      "title": "تعديل الملف الشخصي",
+      "subtitle": "حدّث معلوماتك الشخصية",
+      "changePicture": "تغيير صورة الملف الشخصي",
+      "pictureHint": "PNG أو JPG، حتى ٢ ميجابايت",
+      "save": "حفظ التغييرات"
+    },
+    "validation": {
+      "fullName": "يجب أن يكون الاسم الكامل بين 2 و150 حرفًا.",
+      "email": "يلزم إدخال بريد إلكتروني صالح.",
+      "currentPasswordRequired": "كلمة المرور الحالية مطلوبة.",
+      "newPassword": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل، وتشمل حرفًا كبيرًا وحرفًا صغيرًا ورقمًا.",
+      "passwordMismatch": "كلمتا المرور غير متطابقتين."
+    },
+    "toast": {
+      "updated": "تم تحديث الملف الشخصي بنجاح.",
+      "updateFailed": "تعذّر تحديث الملف الشخصي",
+      "passwordChanged": "تم تغيير كلمة المرور بنجاح.",
+      "passwordFailed": "تعذّر تغيير كلمة المرور"
+    }
+  }
+}

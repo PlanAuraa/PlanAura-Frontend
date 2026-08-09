@@ -24,14 +24,14 @@
 
 .cp-hero__blob--one {
   top: -70px;
-  right: -40px;
+  inset-inline-end: -40px;
   width: 220px;
   height: 220px;
 }
 
 .cp-hero__blob--two {
   bottom: -90px;
-  left: -60px;
+  inset-inline-start: -60px;
   width: 260px;
   height: 260px;
   animation-delay: -4s;
@@ -76,7 +76,7 @@
 
 .cp-hero__avatar-edit {
   position: absolute;
-  right: 2px;
+  inset-inline-end: 2px;
   bottom: 2px;
   display: flex;
   align-items: center;
@@ -487,7 +487,7 @@
 .cp-toggle__thumb {
   position: absolute;
   top: 2px;
-  left: 2px;
+  inset-inline-start: 2px;
   width: 18px;
   height: 18px;
   border-radius: var(--radius-full);
@@ -568,7 +568,7 @@
   .cp-hero__content {
     flex-direction: column;
     align-items: flex-start;
-    text-align: left;
+    text-align: start;
   }
 
   .cp-hero__edit-btn {

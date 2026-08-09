@@ -1,0 +1,84 @@
+{
+  "lang": {
+    "switch": "Switch language",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close"
+  },
+  "profile": {
+    "roleBadge": "Client",
+    "editProfile": "Edit Profile",
+    "changePhoto": "Change photo",
+    "completion": {
+      "title": "Profile Completion",
+      "subtitle": "Complete your profile to get the most out of Planura.",
+      "allSet": "Your profile is all set — nice work!"
+    },
+    "checklist": {
+      "photo": "Profile photo",
+      "fullName": "Full name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "city": "City",
+      "dateOfBirth": "Date of birth"
+    },
+    "personalInfo": "Personal Information",
+    "contactInfo": "Contact Information",
+    "accountDetails": "Account Details",
+    "security": "Security",
+    "preferences": "Preferences",
+    "comingSoon": "Coming soon",
+    "field": {
+      "fullName": "Full Name",
+      "dateOfBirth": "Date of Birth",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "city": "City",
+      "memberSince": "Member Since",
+      "accountType": "Account Type",
+      "status": "Status",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password"
+    },
+    "add": {
+      "dateOfBirth": "Add date of birth",
+      "phone": "Add phone number",
+      "city": "Add city"
+    },
+    "value": {
+      "client": "Client",
+      "active": "Active"
+    },
+    "changePassword": "Change Password",
+    "pref": {
+      "emailNotifications": "Email Notifications",
+      "emailNotificationsHint": "Booking updates and reminders",
+      "sms": "SMS Reminders",
+      "smsHint": "Event day notifications"
+    },
+    "edit": {
+      "title": "Edit Profile",
+      "subtitle": "Update your personal information",
+      "changePicture": "Change profile picture",
+      "pictureHint": "PNG or JPG, up to 2 MB",
+      "save": "Save Changes"
+    },
+    "validation": {
+      "fullName": "Full name must be between 2 and 150 characters.",
+      "email": "A valid email address is required.",
+      "currentPasswordRequired": "Current password is required.",
+      "newPassword": "Password must be at least 8 characters, with an uppercase letter, a lowercase letter, and a digit.",
+      "passwordMismatch": "Passwords do not match."
+    },
+    "toast": {
+      "updated": "Profile updated successfully.",
+      "updateFailed": "Could not update profile",
+      "passwordChanged": "Password changed successfully.",
+      "passwordFailed": "Could not change password"
+    }
+  }
+}
