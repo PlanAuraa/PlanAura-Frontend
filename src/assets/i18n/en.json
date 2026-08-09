@@ -4,6 +4,25 @@
     "english": "English",
     "arabic": "العربية"
   },
+  "nav": {
+    "overview": "Overview",
+    "myEventPlans": "My Event Plans",
+    "browseVendors": "Browse Vendors",
+    "myBookings": "My Bookings",
+    "aiVisualizer": "AI Visualizer",
+    "myProfile": "My Profile",
+    "newEvent": "New Event",
+    "logout": "Log Out",
+    "title": {
+      "vendorDetails": "Vendor Details",
+      "newBooking": "New Booking",
+      "newEventPlan": "New Event Plan",
+      "eventPlanDetails": "Event Plan Details",
+      "editEventPlan": "Edit Event Plan",
+      "aiInvitation": "AI Invitation",
+      "aiVisualizer": "AI Event Visualizer"
+    }
+  },
   "common": {
     "cancel": "Cancel",
     "close": "Close"

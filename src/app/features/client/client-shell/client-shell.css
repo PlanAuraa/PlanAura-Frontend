@@ -7,11 +7,11 @@
 .client-nav {
   position: fixed;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   height: 100vh;
   width: 260px;
   background: linear-gradient(180deg, var(--color-surface-container-lowest) 0%, var(--color-soft-beige) 100%);
-  border-right: 1px solid var(--color-subtle-border);
+  border-inline-end: 1px solid var(--color-subtle-border);
   display: flex;
   flex-direction: column;
   padding: var(--space-lg) 0;
@@ -72,7 +72,7 @@
 .client-nav__link::before {
   content: '';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 4px;
@@ -90,6 +90,11 @@
   background: var(--color-soft-beige);
   color: var(--color-primary);
   transform: translateX(3px);
+}
+
+/* Mirror the hover nudge inward under RTL (sidebar sits on the right). */
+:host-context([dir='rtl']) .client-nav__link:hover {
+  transform: translateX(-3px);
 }
 
 .client-nav__link:hover .client-nav__link-icon {
@@ -159,7 +164,7 @@
 }
 
 .client-main {
-  margin-left: 260px;
+  margin-inline-start: 260px;
   min-height: 100vh;
 }
 
@@ -227,7 +232,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: 6px 14px 6px 6px;
+  padding-block: 6px;
+  padding-inline: 6px 14px;
   /* Wrapped in the same bordered/shadowed chip language as the bell button
      next to it, instead of name+avatar floating as bare text — the two
      now read as one deliberate control cluster. */
@@ -303,12 +309,11 @@
   }
 
   .client-main {
-    margin-left: 76px;
+    margin-inline-start: 76px;
   }
 
   .client-topbar,
   .client-content {
-    padding-left: var(--margin-mobile);
-    padding-right: var(--margin-mobile);
+    padding-inline: var(--margin-mobile);
   }
 }

@@ -4,6 +4,25 @@
     "english": "English",
     "arabic": "العربية"
   },
+  "nav": {
+    "overview": "نظرة عامة",
+    "myEventPlans": "مناسباتي",
+    "browseVendors": "تصفّح المورّدين",
+    "myBookings": "حجوزاتي",
+    "aiVisualizer": "المصمّم الذكي",
+    "myProfile": "ملفي الشخصي",
+    "newEvent": "مناسبة جديدة",
+    "logout": "تسجيل الخروج",
+    "title": {
+      "vendorDetails": "تفاصيل المورّد",
+      "newBooking": "حجز جديد",
+      "newEventPlan": "خطة مناسبة جديدة",
+      "eventPlanDetails": "تفاصيل المناسبة",
+      "editEventPlan": "تعديل المناسبة",
+      "aiInvitation": "دعوة بالذكاء الاصطناعي",
+      "aiVisualizer": "مصمّم المناسبات الذكي"
+    }
+  },
   "common": {
     "cancel": "إلغاء",
     "close": "إغلاق"

@@ -11,7 +11,7 @@
       routerLinkActive="client-nav__link--active"
     >
       <span class="material-symbols-outlined client-nav__link-icon">space_dashboard</span>
-      <span class="text-label-md">Overview</span>
+      <span class="text-label-md">{{ 'nav.overview' | translate }}</span>
     </a>
     <a
       class="client-nav__link"
@@ -19,7 +19,7 @@
       routerLinkActive="client-nav__link--active"
     >
       <span class="material-symbols-outlined client-nav__link-icon">event_note</span>
-      <span class="text-label-md">My Event Plans</span>
+      <span class="text-label-md">{{ 'nav.myEventPlans' | translate }}</span>
     </a>
     <a
       class="client-nav__link"
@@ -27,7 +27,7 @@
       routerLinkActive="client-nav__link--active"
     >
       <span class="material-symbols-outlined client-nav__link-icon">storefront</span>
-      <span class="text-label-md">Browse Vendors</span>
+      <span class="text-label-md">{{ 'nav.browseVendors' | translate }}</span>
     </a>
     <a
       class="client-nav__link"
@@ -35,7 +35,7 @@
       routerLinkActive="client-nav__link--active"
     >
       <span class="material-symbols-outlined client-nav__link-icon">event_available</span>
-      <span class="text-label-md">My Bookings</span>
+      <span class="text-label-md">{{ 'nav.myBookings' | translate }}</span>
     </a>
     <a
       class="client-nav__link"
@@ -43,7 +43,7 @@
       routerLinkActive="client-nav__link--active"
     >
       <span class="material-symbols-outlined client-nav__link-icon">auto_awesome</span>
-      <span class="text-label-md">AI Visualizer</span>
+      <span class="text-label-md">{{ 'nav.aiVisualizer' | translate }}</span>
     </a>
     <a
       class="client-nav__link"
@@ -51,25 +51,25 @@
       routerLinkActive="client-nav__link--active"
     >
       <span class="material-symbols-outlined client-nav__link-icon">account_circle</span>
-      <span class="text-label-md">My Profile</span>
+      <span class="text-label-md">{{ 'nav.myProfile' | translate }}</span>
     </a>
   </nav>
 
   <div class="client-nav__footer">
     <a class="btn-gold-gradient client-nav__new-event" routerLink="/client/event-plans/new">
       <span class="material-symbols-outlined">add</span>
-      <span class="text-label-md">New Event</span>
+      <span class="text-label-md">{{ 'nav.newEvent' | translate }}</span>
     </a>
     <button class="client-nav__logout" type="button" (click)="logout()">
       <span class="material-symbols-outlined">logout</span>
-      <span class="text-label-md">Log Out</span>
+      <span class="text-label-md">{{ 'nav.logout' | translate }}</span>
     </button>
   </div>
 </aside>
 
 <main class="client-main">
   <header class="client-topbar">
-    <h2 class="text-headline-md client-topbar__title">{{ pageTitle() }}</h2>
+    <h2 class="text-headline-md client-topbar__title">{{ pageTitleKey() | translate }}</h2>
 
     <div class="client-topbar__actions">
       <button
