@@ -2,6 +2,7 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { catchError, forkJoin, of } from 'rxjs';
 import { AlertBanner } from '../../../../shared/ui/alert-banner/alert-banner';
 import { Button } from '../../../../shared/ui/button/button';
@@ -45,6 +46,7 @@ import { notifyError, notifySuccess } from '../../../../shared/utils/notify';
     BookingTimeline,
     DatePipe,
     DecimalPipe,
+    TranslatePipe,
   ],
   templateUrl: './event-plan-detail.html',
   styleUrl: './event-plan-detail.css',
@@ -59,6 +61,7 @@ export class EventPlanDetail implements OnInit {
   private readonly vendorService = inject(VendorService);
   private readonly packageService = inject(VendorPackageService);
   private readonly categoryService = inject(ServiceCategoryService);
+  private readonly translate = inject(TranslateService);
 
   // Exposed so the template can reference enum members directly.
   protected readonly BookingStatus = BookingStatus;
@@ -250,13 +253,13 @@ export class EventPlanDetail implements OnInit {
         this.bookings.update((list) => list.map((b) => (b.id === updated.id ? updated : b)));
         this.actioningId.set(null);
         this.cancelTarget.set(null);
-        notifySuccess('Booking request cancelled.');
+        notifySuccess(this.translate.instant('planDetail.toast.cancelled') as string);
       },
       error: (err: AppError) => {
         this.error.set(err);
         this.actioningId.set(null);
         this.cancelTarget.set(null);
-        notifyError('Could not cancel booking', err.message);
+        notifyError(this.translate.instant('planDetail.toast.cancelFailed') as string, err.message);
       },
     });
   }
@@ -305,12 +308,12 @@ export class EventPlanDetail implements OnInit {
           this.bookings.update((list) => list.map((b) => (b.id === updated.id ? updated : b)));
           this.cancellationSubmitting.set(false);
           this.cancellationTarget.set(null);
-          notifySuccess('Cancellation requested — an admin will review it shortly.');
+          notifySuccess(this.translate.instant('planDetail.toast.cancellationRequested') as string);
         },
         error: (err: AppError) => {
           this.cancellationError.set(err);
           this.cancellationSubmitting.set(false);
-          notifyError('Could not request cancellation', err.message);
+          notifyError(this.translate.instant('planDetail.toast.cancelRequestFailed') as string, err.message);
         },
       });
   }
@@ -323,11 +326,11 @@ export class EventPlanDetail implements OnInit {
       next: (updated) => {
         this.bookings.update((list) => list.map((b) => (b.id === updated.id ? updated : b)));
         this.confirmingCompletionId.set(null);
-        notifySuccess('Thanks for confirming — booking marked complete.');
+        notifySuccess(this.translate.instant('planDetail.toast.confirmed') as string);
       },
       error: (err: AppError) => {
         this.confirmingCompletionId.set(null);
-        notifyError('Could not confirm booking', err.message);
+        notifyError(this.translate.instant('planDetail.toast.confirmFailed') as string, err.message);
       },
     });
   }
@@ -351,7 +354,7 @@ export class EventPlanDetail implements OnInit {
         this.timelineLoading.set(null);
       },
       error: (err: AppError) => {
-        this.timelineError.set(err.message || 'Could not load booking activity.');
+        this.timelineError.set(err.message || (this.translate.instant('planDetail.toast.timelineError') as string));
         this.timelineLoading.set(null);
       },
     });
@@ -386,12 +389,12 @@ export class EventPlanDetail implements OnInit {
         this.bookings.update((list) => list.map((b) => (b.id === updated.id ? updated : b)));
         this.disputeSubmitting.set(false);
         this.disputeTargetId.set(null);
-        notifySuccess('Your report has been submitted.');
+        notifySuccess(this.translate.instant('planDetail.toast.reportSubmitted') as string);
       },
       error: (err: AppError) => {
         this.disputeError.set(err);
         this.disputeSubmitting.set(false);
-        notifyError('Could not submit report', err.message);
+        notifyError(this.translate.instant('planDetail.toast.reportFailed') as string, err.message);
       },
     });
   }
@@ -418,7 +421,7 @@ export class EventPlanDetail implements OnInit {
     }
 
     if (this.reviewRating() < 1) {
-      this.reviewError.set({ status: 400, message: 'Please select a star rating.', fieldErrors: [] });
+      this.reviewError.set({ status: 400, message: this.translate.instant('planDetail.review.selectRating') as string, fieldErrors: [] });
       return;
     }
 
@@ -449,12 +452,17 @@ export class EventPlanDetail implements OnInit {
         );
         this.reviewSubmitting.set(false);
         this.reviewTargetId.set(null);
-        notifySuccess(isEdit ? 'Review updated.' : 'Thanks for your review!');
+        notifySuccess(
+          this.translate.instant(isEdit ? 'planDetail.toast.reviewUpdated' : 'planDetail.toast.reviewThanks') as string,
+        );
       },
       error: (err: AppError) => {
         this.reviewError.set(err);
         this.reviewSubmitting.set(false);
-        notifyError(isEdit ? 'Could not update review' : 'Could not submit review', err.message);
+        notifyError(
+          this.translate.instant(isEdit ? 'planDetail.toast.reviewUpdateFailed' : 'planDetail.toast.reviewSubmitFailed') as string,
+          err.message,
+        );
       },
     });
   }
@@ -490,7 +498,7 @@ export class EventPlanDetail implements OnInit {
       },
       error: (err: AppError) => {
         this.checklistUpdatingId.set(null);
-        notifyError('Could not add category', err.message);
+        notifyError(this.translate.instant('planDetail.toast.addCategoryFailed') as string, err.message);
       },
     });
   }
@@ -508,7 +516,7 @@ export class EventPlanDetail implements OnInit {
       },
       error: (err: AppError) => {
         this.checklistUpdatingId.set(null);
-        notifyError('Could not remove category', err.message);
+        notifyError(this.translate.instant('planDetail.toast.removeCategoryFailed') as string, err.message);
       },
     });
   }

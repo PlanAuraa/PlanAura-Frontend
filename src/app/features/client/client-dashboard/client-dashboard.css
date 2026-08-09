@@ -44,7 +44,7 @@
   border: 1px solid var(--color-subtle-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xs);
-  text-align: left;
+  text-align: start;
   font-family: var(--font-family-base);
   cursor: default;
 }
@@ -218,7 +218,7 @@ button.client-dashboard__stat {
   border: 1px solid var(--color-subtle-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface-container-lowest);
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   font-family: var(--font-family-base);
 }
@@ -341,12 +341,12 @@ button.client-dashboard__stat {
 
 .client-dashboard__empty-art-spark--one {
   top: -4px;
-  right: 4px;
+  inset-inline-end: 4px;
 }
 
 .client-dashboard__empty-art-spark--two {
   bottom: -2px;
-  left: -6px;
+  inset-inline-start: -6px;
   color: var(--color-primary);
   font-size: 16px;
 }
@@ -369,7 +369,7 @@ button.client-dashboard__stat {
   border-radius: var(--radius-lg);
   border: none;
   background: transparent;
-  text-align: left;
+  text-align: start;
   text-decoration: none;
   cursor: pointer;
   font-family: var(--font-family-base);
@@ -440,4 +440,12 @@ button.client-dashboard__stat {
 
 .client-dashboard__tip strong {
   color: var(--color-charcoal);
+}
+
+/* Mirror the decorative hover nudges under RTL. */
+:host-context([dir='rtl']) .client-dashboard__view-all:hover .material-symbols-outlined,
+:host-context([dir='rtl']) .client-dashboard__project-row:hover .client-dashboard__project-chevron,
+:host-context([dir='rtl']) .client-dashboard__action:hover,
+:host-context([dir='rtl']) .client-dashboard__action:hover .client-dashboard__action-chevron {
+  transform: translateX(-3px);
 }

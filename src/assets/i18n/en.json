@@ -25,7 +25,194 @@
   },
   "common": {
     "cancel": "Cancel",
-    "close": "Close"
+    "close": "Close",
+    "delete": "Delete",
+    "view": "View"
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "subtitle": "Here's what's happening with your events.",
+    "stat": {
+      "plans": "Event Plans",
+      "upcoming": "Upcoming"
+    },
+    "yourPlans": "Your Event Plans",
+    "yourPlansSub": "Everything you're currently planning",
+    "viewAll": "View all",
+    "guests": "guests",
+    "empty": {
+      "title": "No event plans yet",
+      "subtitle": "Create your first event plan to start bringing your vision to life.",
+      "cta": "Create your first event plan"
+    },
+    "quickActions": "Quick Actions",
+    "action": {
+      "plan": "Plan an event",
+      "planSub": "Start a new event plan",
+      "browse": "Browse vendors",
+      "browseSub": "Find the right team",
+      "bookings": "My bookings",
+      "bookingsSub": "Track confirmations"
+    },
+    "tipLabel": "Tip —",
+    "tip": "add style notes to your event plan to help vendors tailor their proposals to you."
+  },
+  "bookings": {
+    "title": "All your bookings",
+    "subtitle": "Every request you've sent, across every event plan.",
+    "loading": "Loading your bookings...",
+    "empty": "You haven't requested any bookings yet.",
+    "partOf": "Part of:",
+    "refundOnWay": "Your refund is on its way to your account.",
+    "contract": "Booking Contract",
+    "viewPlan": "View plan"
+  },
+  "planList": {
+    "eyebrow": "My Events",
+    "subtitle": "Keep track of the events you're planning on Planura.",
+    "createPlan": "Create plan",
+    "bookingSuccess": "Booking request sent! The vendor will respond soon.",
+    "filter": {
+      "upcomingOnly": "Showing upcoming event plans only.",
+      "all": "Showing all event plans.",
+      "showUpcoming": "Show upcoming only"
+    },
+    "loading": "Loading your event plans...",
+    "empty": {
+      "upcoming": "No upcoming event plans right now.",
+      "viewAllPlans": "View all plans",
+      "none": "No event plans yet — create your first."
+    },
+    "addBookings": "Add bookings",
+    "deleteTitle": "Delete this event plan?",
+    "deleteMessage": "Delete '{{title}}'? This can not be undone.",
+    "toast": {
+      "deleted": "Event plan deleted.",
+      "deleteFailed": "Could not delete event plan"
+    }
+  },
+  "planDetail": {
+    "loading": "Loading event plan...",
+    "edit": "Edit",
+    "field": {
+      "date": "Date",
+      "city": "City",
+      "guests": "Guests",
+      "budget": "Budget"
+    },
+    "totalBudget": "Total budget",
+    "bookedSoFar": "Booked so far",
+    "remaining": "Remaining",
+    "checklist": {
+      "title": "Vendor checklist",
+      "empty": "Add the categories you still need to book (venue, photographer, catering…).",
+      "remove": "Remove from checklist",
+      "addPlaceholder": "Add a category…",
+      "add": "Add"
+    },
+    "bookingsSection": {
+      "eyebrow": "Bookings",
+      "title": "Vendors booked for this event",
+      "empty": "No bookings yet for this event.",
+      "browse": "Browse vendors for this event"
+    },
+    "cancelRequest": "Cancel request",
+    "requestCancellation": "Request cancellation",
+    "confirmDelivered": "Confirm service delivered",
+    "reportProblem": "Report a problem",
+    "viewActivity": "View activity",
+    "hideActivity": "Hide activity",
+    "review": {
+      "edit": "Edit your review",
+      "leave": "Leave a review",
+      "ratingAria": "Rating out of 5 stars",
+      "starLabel": "{{count}} star(s)",
+      "commentLabel": "Comment (optional)",
+      "commentError": "Comment must be 1000 characters or fewer.",
+      "save": "Save changes",
+      "submit": "Submit review",
+      "selectRating": "Please select a star rating."
+    },
+    "dispute": {
+      "label": "What happened?",
+      "error": "Please describe the issue.",
+      "submit": "Submit report"
+    },
+    "cancelDialog": {
+      "title": "Cancel this booking request?",
+      "message": "Are you sure you want to cancel this request?",
+      "keep": "Keep it"
+    },
+    "cancellation": {
+      "requestedWithRefund": "Cancellation requested — estimated refund {{percent}}%. Waiting on admin review.",
+      "requestedNoRefund": "Cancellation requested. Waiting on admin review.",
+      "calculating": "Calculating your estimated refund…",
+      "quote": "Based on our cancellation policy ({{days}} day(s) before the event), you're estimated to receive a {{percent}}% refund ({{amount}} {{currency}}). This request will be reviewed by an admin before anything is charged or released.",
+      "reasonLabel": "Why are you cancelling?",
+      "reasonError": "Please provide a reason.",
+      "keepBooking": "Keep booking"
+    },
+    "toast": {
+      "cancelled": "Booking request cancelled.",
+      "cancelFailed": "Could not cancel booking",
+      "cancellationRequested": "Cancellation requested — an admin will review it shortly.",
+      "cancelRequestFailed": "Could not request cancellation",
+      "confirmed": "Thanks for confirming — booking marked complete.",
+      "confirmFailed": "Could not confirm booking",
+      "timelineError": "Could not load booking activity.",
+      "reportSubmitted": "Your report has been submitted.",
+      "reportFailed": "Could not submit report",
+      "reviewUpdated": "Review updated.",
+      "reviewThanks": "Thanks for your review!",
+      "reviewUpdateFailed": "Could not update review",
+      "reviewSubmitFailed": "Could not submit review",
+      "addCategoryFailed": "Could not add category",
+      "removeCategoryFailed": "Could not remove category"
+    }
+  },
+  "planForm": {
+    "eyebrow": "Event plan",
+    "newTitle": "New event plan",
+    "editTitle": "Edit event plan",
+    "subtitle": "Tell us about your event so vendors can help you plan it.",
+    "fromBooking": "Create an event plan first, then we'll take you back to finish your booking.",
+    "detailsTitle": "Event details",
+    "detailsSub": "The basics vendors will see when you request a booking.",
+    "field": {
+      "title": "Event title",
+      "eventType": "Event type",
+      "eventDate": "Event date",
+      "guestCount": "Guest count",
+      "styleNotes": "Style notes (optional)"
+    },
+    "placeholder": {
+      "title": "e.g. Amina & Karim's Wedding",
+      "city": "e.g. Cairo",
+      "styleNotes": "Colors, themes, must-haves..."
+    },
+    "error": {
+      "title": "A title (up to 200 characters) is required.",
+      "eventType": "Choose an event type.",
+      "eventDate": "Choose today or a future date.",
+      "city": "City is required.",
+      "guestCount": "Enter at least 1 guest.",
+      "budget": "Enter a valid budget."
+    },
+    "eventType": {
+      "wedding": "Wedding",
+      "engagement": "Engagement",
+      "birthday": "Birthday",
+      "corporate": "Corporate"
+    },
+    "saveChanges": "Save changes",
+    "toast": {
+      "notFound": "Event plan not found",
+      "notFoundDetail": "It may have been deleted, or doesn't belong to you.",
+      "updated": "Event plan updated.",
+      "updateFailed": "Could not update event plan",
+      "created": "Event plan created.",
+      "createFailed": "Could not create event plan"
+    }
   },
   "profile": {
     "roleBadge": "Client",

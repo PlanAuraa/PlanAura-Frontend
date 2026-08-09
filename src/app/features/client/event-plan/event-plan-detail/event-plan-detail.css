@@ -33,7 +33,7 @@
 }
 
 .event-plan-detail-header__edit-btn {
-  margin-left: auto;
+  margin-inline-start: auto;
   flex-shrink: 0;
 }
 
@@ -146,7 +146,7 @@
 }
 
 .checklist-list__remove {
-  margin-left: auto;
+  margin-inline-start: auto;
   background: none;
   border: none;
   cursor: pointer;
@@ -370,7 +370,7 @@
 }
 
 .review-modal__counter {
-  text-align: right;
+  text-align: end;
   color: var(--color-secondary);
   margin-top: -0.5rem;
 }

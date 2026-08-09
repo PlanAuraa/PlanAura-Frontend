@@ -2,10 +2,10 @@
   <div class="my-bookings-page__header animate-fade-up">
     <p class="text-label-sm my-bookings-page__eyebrow">
       <span class="material-symbols-outlined">event_available</span>
-      My Bookings
+      {{ 'nav.myBookings' | translate }}
     </p>
-    <h3 class="text-headline-sm">All your bookings</h3>
-    <p class="text-body-md">Every request you've sent, across every event plan.</p>
+    <h3 class="text-headline-sm">{{ 'bookings.title' | translate }}</h3>
+    <p class="text-body-md">{{ 'bookings.subtitle' | translate }}</p>
   </div>
 
   <ui-alert-banner [message]="error()?.message ?? null" [details]="error()?.fieldErrors ?? []" />
@@ -13,13 +13,13 @@
   @if (loading()) {
     <div class="my-bookings-page__state animate-fade-up">
       <span class="material-symbols-outlined my-bookings-page__state-icon skeleton-icon">hourglass_top</span>
-      <p class="text-body-md my-bookings-page__empty">Loading your bookings...</p>
+      <p class="text-body-md my-bookings-page__empty">{{ 'bookings.loading' | translate }}</p>
     </div>
   } @else if (bookings().length === 0) {
     <div class="card-luxe luxe-shadow my-bookings-page__empty-card animate-fade-up stagger-1">
       <span class="material-symbols-outlined my-bookings-page__state-icon">event_available</span>
-      <p class="text-body-md">You haven't requested any bookings yet.</p>
-      <ui-button [fullWidth]="false" (click)="goToVendors()">Browse vendors</ui-button>
+      <p class="text-body-md">{{ 'bookings.empty' | translate }}</p>
+      <ui-button [fullWidth]="false" (click)="goToVendors()">{{ 'dashboard.action.browse' | translate }}</ui-button>
     </div>
   } @else {
     <div class="booking-list">
@@ -35,7 +35,7 @@
                 @if (packageTitle(booking); as title) {
                   <p class="text-body-md booking-row__package">{{ title }}</p>
                 }
-                <p class="text-label-sm booking-row__plan">Part of: {{ planTitle(booking) }}</p>
+                <p class="text-label-sm booking-row__plan">{{ 'bookings.partOf' | translate }} {{ planTitle(booking) }}</p>
               </div>
             </div>
 
@@ -47,7 +47,7 @@
               @if (booking.guestCount) {
                 <span>
                   <span class="material-symbols-outlined">groups</span>
-                  {{ booking.guestCount }} guests
+                  {{ booking.guestCount }} {{ 'dashboard.guests' | translate }}
                 </span>
               }
               @if (booking.agreedPrice !== null) {
@@ -63,7 +63,7 @@
               <ui-status-badge [status]="booking.status" [paymentStatus]="booking.paymentStatus" />
               @if (booking.paymentStatus === BookingPaymentStatus.Refunded) {
                 <p class="text-label-sm booking-row__status-note">
-                  Your refund is on its way to your account.
+                  {{ 'bookings.refundOnWay' | translate }}
                 </p>
               }
             </div>
@@ -72,12 +72,12 @@
               @if (booking.contractDocumentUrl) {
                 <app-document-download
                   [url]="booking.contractDocumentUrl"
-                  label="Booking Contract"
+                  [label]="'bookings.contract' | translate"
                   icon="description"
                 />
               }
               <span class="my-bookings-row__view-link">
-                View plan
+                {{ 'bookings.viewPlan' | translate }}
                 <span class="material-symbols-outlined">chevron_right</span>
               </span>
             </div>

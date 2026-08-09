@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AlertBanner } from '../../../../shared/ui/alert-banner/alert-banner';
 import { Button } from '../../../../shared/ui/button/button';
 import { SelectField, SelectOption } from '../../../../shared/ui/select-field/select-field';
@@ -13,7 +14,7 @@ import { notifyError, notifySuccess } from '../../../../shared/utils/notify';
 @Component({
   selector: 'app-event-plan-form',
   standalone: true,
-  imports: [ReactiveFormsModule, TextField, SelectField, Button, AlertBanner],
+  imports: [ReactiveFormsModule, TextField, SelectField, Button, AlertBanner, TranslatePipe],
   templateUrl: './event-plan-form.html',
   styleUrl: './event-plan-form.css',
 })
@@ -22,6 +23,7 @@ export class EventPlanForm implements OnInit {
   private readonly eventPlanService = inject(EventPlanService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly translate = inject(TranslateService);
 
   protected readonly saving = signal(false);
   protected readonly loading = signal(false);
@@ -40,11 +42,12 @@ export class EventPlanForm implements OnInit {
     : null;
   protected readonly isEditMode = this.editingId !== null;
 
+  // Values stay English (persisted + sent to the backend); only the labels are localized.
   protected readonly eventTypeOptions: SelectOption[] = [
-    { value: 'Wedding', label: 'Wedding' },
-    { value: 'Engagement', label: 'Engagement' },
-    { value: 'Birthday', label: 'Birthday' },
-    { value: 'Corporate', label: 'Corporate' },
+    { value: 'Wedding', label: this.translate.instant('planForm.eventType.wedding') },
+    { value: 'Engagement', label: this.translate.instant('planForm.eventType.engagement') },
+    { value: 'Birthday', label: this.translate.instant('planForm.eventType.birthday') },
+    { value: 'Corporate', label: this.translate.instant('planForm.eventType.corporate') },
   ];
 
   protected readonly todayIso = new Date().toISOString().slice(0, 10);
@@ -88,7 +91,7 @@ export class EventPlanForm implements OnInit {
       error: (err: AppError) => {
         this.loading.set(false);
         if (err.status === 404) {
-          notifyError("Event plan not found", "It may have been deleted, or doesn't belong to you.");
+          notifyError(this.translate.instant('planForm.toast.notFound') as string, this.translate.instant('planForm.toast.notFoundDetail') as string);
           this.router.navigateByUrl('/client/event-plans');
           return;
         }
@@ -122,18 +125,18 @@ export class EventPlanForm implements OnInit {
       this.eventPlanService.updateEventPlan(editingId, dto).subscribe({
         next: () => {
           this.saving.set(false);
-          notifySuccess('Event plan updated.');
+          notifySuccess(this.translate.instant('planForm.toast.updated') as string);
           this.router.navigate(['/client/event-plans', editingId]);
         },
         error: (err: AppError) => {
           this.saving.set(false);
           if (err.status === 404) {
-            notifyError("Event plan not found", "It may have been deleted, or doesn't belong to you.");
+            notifyError(this.translate.instant('planForm.toast.notFound') as string, this.translate.instant('planForm.toast.notFoundDetail') as string);
             this.router.navigateByUrl('/client/event-plans');
             return;
           }
           this.error.set(err);
-          notifyError('Could not update event plan', err.message);
+          notifyError(this.translate.instant('planForm.toast.updateFailed') as string, err.message);
         },
       });
       return;
@@ -142,7 +145,7 @@ export class EventPlanForm implements OnInit {
     this.eventPlanService.createEventPlan(dto).subscribe({
       next: (createdPlan) => {
         this.saving.set(false);
-        notifySuccess('Event plan created.');
+        notifySuccess(this.translate.instant('planForm.toast.created') as string);
 
         if (this.fromBooking && this.bookingVendorId && this.bookingPackageId) {
           this.router.navigate(['/client/booking/new'], {
@@ -160,7 +163,7 @@ export class EventPlanForm implements OnInit {
       error: (err: AppError) => {
         this.error.set(err);
         this.saving.set(false);
-        notifyError('Could not create event plan', err.message);
+        notifyError(this.translate.instant('planForm.toast.createFailed') as string, err.message);
       },
     });
   }

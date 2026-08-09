@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { AlertBanner } from '../../../shared/ui/alert-banner/alert-banner';
 import { Button } from '../../../shared/ui/button/button';
 import { AppError } from '../../../core/interfaces/api-response.model';
@@ -10,7 +11,7 @@ import { EventPlanService } from '../../../core/services/event-plan.service';
 @Component({
   selector: 'app-client-dashboard',
   standalone: true,
-  imports: [AlertBanner, Button, DatePipe, RouterLink],
+  imports: [AlertBanner, Button, DatePipe, RouterLink, TranslatePipe],
   templateUrl: './client-dashboard.html',
   styleUrl: './client-dashboard.css',
 })

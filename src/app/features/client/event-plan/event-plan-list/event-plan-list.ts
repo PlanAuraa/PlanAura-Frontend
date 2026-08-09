@@ -2,6 +2,7 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AlertBanner } from '../../../../shared/ui/alert-banner/alert-banner';
 import { Button } from '../../../../shared/ui/button/button';
 import { ConfirmDialog } from '../../../../shared/ui/confirm-dialog/confirm-dialog';
@@ -13,7 +14,7 @@ import { notifyError, notifySuccess } from '../../../../shared/utils/notify';
 @Component({
   selector: 'app-event-plan-list',
   standalone: true,
-  imports: [AlertBanner, Button, ConfirmDialog, DatePipe, DecimalPipe],
+  imports: [AlertBanner, Button, ConfirmDialog, DatePipe, DecimalPipe, TranslatePipe],
   templateUrl: './event-plan-list.html',
   styleUrl: './event-plan-list.css',
 })
@@ -21,6 +22,7 @@ export class EventPlanList implements OnInit {
   private readonly eventPlanService = inject(EventPlanService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly translate = inject(TranslateService);
 
   protected readonly plans = signal<EventPlan[]>([]);
   protected readonly loading = signal(false);
@@ -109,13 +111,13 @@ export class EventPlanList implements OnInit {
         this.plans.update((list) => list.filter((p) => p.id !== plan.id));
         this.deletingId.set(null);
         this.deleteTarget.set(null);
-        notifySuccess('Event plan deleted.');
+        notifySuccess(this.translate.instant('planList.toast.deleted') as string);
       },
       error: (err: AppError) => {
         this.error.set(err);
         this.deletingId.set(null);
         this.deleteTarget.set(null);
-        notifyError('Could not delete event plan', err.message);
+        notifyError(this.translate.instant('planList.toast.deleteFailed') as string, err.message);
       },
     });
   }

@@ -2,7 +2,7 @@
   <ui-alert-banner [message]="error()?.message ?? null" [details]="error()?.fieldErrors ?? []" />
 
   @if (loading()) {
-    <p class="text-body-md event-plan-detail-page__empty">Loading event plan...</p>
+    <p class="text-body-md event-plan-detail-page__empty">{{ 'planDetail.loading' | translate }}</p>
   } @else if (plan(); as p) {
     <header class="card-luxe luxe-shadow event-plan-detail-header animate-fade-up">
       <div class="event-plan-detail-header__top">
@@ -18,7 +18,7 @@
           (click)="goToInvitation()"
         >
           <span class="material-symbols-outlined">mail</span>
-          AI Invitation
+          {{ 'nav.title.aiInvitation' | translate }}
         </ui-button>
         <ui-button
           class="event-plan-detail-header__edit-btn"
@@ -27,7 +27,7 @@
           (click)="goToEdit()"
         >
           <span class="material-symbols-outlined">edit</span>
-          Edit
+          {{ 'planDetail.edit' | translate }}
         </ui-button>
       </div>
 
@@ -35,28 +35,28 @@
         <div class="event-plan-detail-header__field">
           <span class="text-label-sm event-plan-detail-header__label">
             <span class="material-symbols-outlined">event</span>
-            Date
+            {{ 'planDetail.field.date' | translate }}
           </span>
           <span class="text-body-md event-plan-detail-header__value">{{ p.eventDate | date: 'mediumDate' }}</span>
         </div>
         <div class="event-plan-detail-header__field">
           <span class="text-label-sm event-plan-detail-header__label">
             <span class="material-symbols-outlined">location_on</span>
-            City
+            {{ 'planDetail.field.city' | translate }}
           </span>
           <span class="text-body-md event-plan-detail-header__value">{{ p.city }}</span>
         </div>
         <div class="event-plan-detail-header__field">
           <span class="text-label-sm event-plan-detail-header__label">
             <span class="material-symbols-outlined">groups</span>
-            Guests
+            {{ 'planDetail.field.guests' | translate }}
           </span>
           <span class="text-body-md event-plan-detail-header__value">{{ p.guestCount }}</span>
         </div>
         <div class="event-plan-detail-header__field">
           <span class="text-label-sm event-plan-detail-header__label">
             <span class="material-symbols-outlined">payments</span>
-            Budget
+            {{ 'planDetail.field.budget' | translate }}
           </span>
           <span class="text-body-md event-plan-detail-header__value">{{ p.budgetTotal | number: '1.0-2' }}</span>
         </div>
@@ -70,20 +70,20 @@
     <section class="card-luxe luxe-shadow event-plan-detail-section animate-fade-up">
       <p class="text-label-sm event-plan-detail-section__eyebrow">
         <span class="material-symbols-outlined">payments</span>
-        Budget
+        {{ 'planDetail.field.budget' | translate }}
       </p>
       <div class="event-plan-detail-header__grid">
         <div class="event-plan-detail-header__field">
-          <span class="text-label-sm event-plan-detail-header__label">Total budget</span>
+          <span class="text-label-sm event-plan-detail-header__label">{{ 'planDetail.totalBudget' | translate }}</span>
           <span class="text-body-md event-plan-detail-header__value">{{ p.budgetTotal | number: '1.0-2' }}</span>
         </div>
         <div class="event-plan-detail-header__field">
-          <span class="text-label-sm event-plan-detail-header__label">Booked so far</span>
+          <span class="text-label-sm event-plan-detail-header__label">{{ 'planDetail.bookedSoFar' | translate }}</span>
           <span class="text-body-md event-plan-detail-header__value">{{ p.totalBookedCost | number: '1.0-2' }}</span>
         </div>
         @if (p.remainingBudget !== null) {
           <div class="event-plan-detail-header__field">
-            <span class="text-label-sm event-plan-detail-header__label">Remaining</span>
+            <span class="text-label-sm event-plan-detail-header__label">{{ 'planDetail.remaining' | translate }}</span>
             <span
               class="text-body-md event-plan-detail-header__value"
               [class.event-plan-detail-header__value--over]="p.remainingBudget < 0"
@@ -96,10 +96,10 @@
 
       <p class="text-label-sm event-plan-detail-section__eyebrow" style="margin-top: 1.5rem;">
         <span class="material-symbols-outlined">checklist</span>
-        Vendor checklist
+        {{ 'planDetail.checklist.title' | translate }}
       </p>
       @if (p.checklist.length === 0) {
-        <p class="text-body-md">Add the categories you still need to book (venue, photographer, catering…).</p>
+        <p class="text-body-md">{{ 'planDetail.checklist.empty' | translate }}</p>
       } @else {
         <ul class="checklist-list">
           @for (item of p.checklist; track item.serviceCategoryId) {
@@ -111,7 +111,7 @@
                 type="button"
                 [disabled]="checklistUpdatingId() === item.serviceCategoryId"
                 (click)="removeChecklistCategory(item.serviceCategoryId)"
-                title="Remove from checklist"
+                [title]="'planDetail.checklist.remove' | translate"
               >
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -127,7 +127,7 @@
             [value]="selectedCategoryToAdd() ?? ''"
             (change)="selectCategoryToAdd($any($event.target).value ? +$any($event.target).value : null)"
           >
-            <option value="" disabled selected>Add a category…</option>
+            <option value="" disabled selected>{{ 'planDetail.checklist.addPlaceholder' | translate }}</option>
             @for (category of availableCategoriesToAdd(); track category.id) {
               <option [value]="category.id">{{ category.nameEn }}</option>
             }
@@ -139,7 +139,7 @@
             [loading]="checklistUpdatingId() === selectedCategoryToAdd()"
             (click)="addChecklistCategory()"
           >
-            Add
+            {{ 'planDetail.checklist.add' | translate }}
           </ui-button>
         </div>
       }
@@ -148,15 +148,15 @@
     <section class="event-plan-detail-section animate-fade-up stagger-1">
       <p class="text-label-sm event-plan-detail-section__eyebrow">
         <span class="material-symbols-outlined">calendar_month</span>
-        Bookings
+        {{ 'planDetail.bookingsSection.eyebrow' | translate }}
       </p>
-      <h3 class="text-headline-sm">Vendors booked for this event</h3>
+      <h3 class="text-headline-sm">{{ 'planDetail.bookingsSection.title' | translate }}</h3>
 
       @if (bookings().length === 0) {
         <div class="card-luxe luxe-shadow event-plan-detail-page__empty-card">
-          <p class="text-body-md">No bookings yet for this event.</p>
+          <p class="text-body-md">{{ 'planDetail.bookingsSection.empty' | translate }}</p>
           <ui-button [fullWidth]="false" (click)="goToVendors()">
-            Browse vendors for this event
+            {{ 'planDetail.bookingsSection.browse' | translate }}
           </ui-button>
         </div>
       } @else {
@@ -194,7 +194,7 @@
                   @if (booking.guestCount) {
                     <span>
                       <span class="material-symbols-outlined">groups</span>
-                      {{ booking.guestCount }} guests
+                      {{ booking.guestCount }} {{ 'dashboard.guests' | translate }}
                     </span>
                   }
                   @if (booking.agreedPrice !== null) {
@@ -210,7 +210,7 @@
                   <ui-status-badge [status]="booking.status" [paymentStatus]="booking.paymentStatus" />
                   @if (booking.paymentStatus === BookingPaymentStatus.Refunded) {
                     <p class="text-label-sm booking-row__status-note">
-                      Your refund is on its way to your account.
+                      {{ 'bookings.refundOnWay' | translate }}
                     </p>
                   }
                 </div>
@@ -219,7 +219,7 @@
                   @if (booking.contractDocumentUrl) {
                     <app-document-download
                       [url]="booking.contractDocumentUrl"
-                      label="Booking Contract"
+                      [label]="'bookings.contract' | translate"
                       icon="description"
                     />
                   }
@@ -230,7 +230,7 @@
                       [loading]="actioningId() === booking.id"
                       (click)="cancelBooking(booking)"
                     >
-                      Cancel request
+                      {{ 'planDetail.cancelRequest' | translate }}
                     </ui-button>
                   }
                   @if (booking.status === BookingStatus.Accepted) {
@@ -239,14 +239,14 @@
                       [fullWidth]="false"
                       (click)="openRequestCancellation(booking)"
                     >
-                      Request cancellation
+                      {{ 'planDetail.requestCancellation' | translate }}
                     </ui-button>
                   }
                   @if (booking.status === BookingStatus.CancellationRequested) {
                     <p class="text-label-sm booking-row__status-note">
-                      Cancellation requested{{ booking.cancellationRefundPercent !== null
-                        ? ' — estimated refund ' + booking.cancellationRefundPercent + '%'
-                        : '' }}. Waiting on admin review.
+                      {{ booking.cancellationRefundPercent !== null
+                        ? ('planDetail.cancellation.requestedWithRefund' | translate: { percent: booking.cancellationRefundPercent })
+                        : ('planDetail.cancellation.requestedNoRefund' | translate) }}
                     </p>
                   }
                   @if (booking.status === BookingStatus.AwaitingConfirmation) {
@@ -255,12 +255,12 @@
                       [loading]="confirmingCompletionId() === booking.id"
                       (click)="confirmServiceDelivered(booking)"
                     >
-                      Confirm service delivered
+                      {{ 'planDetail.confirmDelivered' | translate }}
                     </ui-button>
                   }
                   @if (booking.status === BookingStatus.Completed) {
                     <ui-button variant="outline" [fullWidth]="false" (click)="openReview(booking)">
-                      {{ booking.reviewId ? 'Edit your review' : 'Leave a review' }}
+                      {{ (booking.reviewId ? 'planDetail.review.edit' : 'planDetail.review.leave') | translate }}
                     </ui-button>
                   }
                   @if (
@@ -270,7 +270,7 @@
                     booking.disputeStatus !== DisputeStatus.Open
                   ) {
                     <button class="booking-row__report" type="button" (click)="openDispute(booking)">
-                      Report a problem
+                      {{ 'planDetail.reportProblem' | translate }}
                     </button>
                   }
 
@@ -279,7 +279,7 @@
                     type="button"
                     (click)="toggleTimeline(booking)"
                   >
-                    {{ timelineOpenId() === booking.id ? 'Hide activity' : 'View activity' }}
+                    {{ (timelineOpenId() === booking.id ? 'planDetail.hideActivity' : 'planDetail.viewActivity') | translate }}
                   </button>
                 </div>
               </div>
@@ -304,7 +304,7 @@
     <div class="modal-card card-luxe luxe-shadow" (click)="$event.stopPropagation()">
       <div class="event-plan-detail-modal__header">
         <span class="material-symbols-outlined event-plan-detail-modal__icon" aria-hidden="true">flag</span>
-        <h4 class="text-headline-sm">Report a problem</h4>
+        <h4 class="text-headline-sm">{{ 'planDetail.reportProblem' | translate }}</h4>
       </div>
       <form [formGroup]="disputeForm" (ngSubmit)="submitDispute()">
         <ui-alert-banner
@@ -312,18 +312,18 @@
           [details]="disputeError()?.fieldErrors ?? []"
         />
         <ui-text-field
-          label="What happened?"
+          [label]="'planDetail.dispute.label' | translate"
           formControlName="reason"
           [multiline]="true"
           [errorMessage]="
             disputeForm.get('reason')!.touched && disputeForm.get('reason')!.invalid
-              ? 'Please describe the issue.'
+              ? ('planDetail.dispute.error' | translate)
               : null
           "
         />
         <div class="event-plan-detail-modal__actions">
-          <ui-button variant="outline" type="button" (click)="closeDispute()">Cancel</ui-button>
-          <ui-button type="submit" [loading]="disputeSubmitting()">Submit report</ui-button>
+          <ui-button variant="outline" type="button" (click)="closeDispute()">{{ 'common.cancel' | translate }}</ui-button>
+          <ui-button type="submit" [loading]="disputeSubmitting()">{{ 'planDetail.dispute.submit' | translate }}</ui-button>
         </div>
       </form>
     </div>
@@ -333,10 +333,10 @@
 @if (cancelTarget(); as target) {
   <ui-confirm-dialog
     icon="event_busy"
-    title="Cancel this booking request?"
-    message="Are you sure you want to cancel this request?"
-    confirmLabel="Cancel request"
-    cancelLabel="Keep it"
+    [title]="'planDetail.cancelDialog.title' | translate"
+    [message]="'planDetail.cancelDialog.message' | translate"
+    [confirmLabel]="'planDetail.cancelRequest' | translate"
+    [cancelLabel]="'planDetail.cancelDialog.keep' | translate"
     variant="danger"
     [loading]="actioningId() === target.id"
     (confirmed)="confirmCancel()"
@@ -349,17 +349,19 @@
     <div class="modal-card card-luxe luxe-shadow" (click)="$event.stopPropagation()">
       <div class="event-plan-detail-modal__header">
         <span class="material-symbols-outlined event-plan-detail-modal__icon" aria-hidden="true">event_busy</span>
-        <h4 class="text-headline-sm">Request cancellation</h4>
+        <h4 class="text-headline-sm">{{ 'planDetail.requestCancellation' | translate }}</h4>
       </div>
 
       @if (cancellationQuoteLoading()) {
-        <p class="text-body-md">Calculating your estimated refund…</p>
+        <p class="text-body-md">{{ 'planDetail.cancellation.calculating' | translate }}</p>
       } @else if (cancellationQuote(); as quote) {
         <p class="text-body-md">
-          Based on our cancellation policy ({{ quote.daysUntilEvent }} day(s) before the event), you're
-          estimated to receive a <strong>{{ quote.refundPercent }}%</strong> refund
-          ({{ quote.refundAmount | number: '1.0-2' }} {{ priceCurrency(target) }}).
-          This request will be reviewed by an admin before anything is charged or released.
+          {{ 'planDetail.cancellation.quote' | translate: {
+            days: quote.daysUntilEvent,
+            percent: quote.refundPercent,
+            amount: (quote.refundAmount | number: '1.0-2'),
+            currency: priceCurrency(target)
+          } }}
         </p>
       }
 
@@ -369,19 +371,19 @@
           [details]="cancellationError()?.fieldErrors ?? []"
         />
         <ui-text-field
-          label="Why are you cancelling?"
+          [label]="'planDetail.cancellation.reasonLabel' | translate"
           formControlName="reason"
           [multiline]="true"
           [errorMessage]="
             cancellationForm.get('reason')!.touched && cancellationForm.get('reason')!.invalid
-              ? 'Please provide a reason.'
+              ? ('planDetail.cancellation.reasonError' | translate)
               : null
           "
         />
         <div class="event-plan-detail-modal__actions">
-          <ui-button variant="outline" type="button" (click)="closeRequestCancellation()">Keep booking</ui-button>
+          <ui-button variant="outline" type="button" (click)="closeRequestCancellation()">{{ 'planDetail.cancellation.keepBooking' | translate }}</ui-button>
           <ui-button type="submit" [loading]="cancellationSubmitting()">
-            Request cancellation
+            {{ 'planDetail.requestCancellation' | translate }}
           </ui-button>
         </div>
       </form>
@@ -394,14 +396,14 @@
     <div class="modal-card card-luxe luxe-shadow" (click)="$event.stopPropagation()">
       <div class="event-plan-detail-modal__header">
         <span class="material-symbols-outlined event-plan-detail-modal__icon" aria-hidden="true">star</span>
-        <h4 class="text-headline-sm">{{ reviewTarget()?.reviewId ? 'Edit your review' : 'Leave a review' }}</h4>
+        <h4 class="text-headline-sm">{{ (reviewTarget()?.reviewId ? 'planDetail.review.edit' : 'planDetail.review.leave') | translate }}</h4>
       </div>
       <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
         <ui-alert-banner
           [message]="reviewError()?.message ?? null"
           [details]="reviewError()?.fieldErrors ?? []"
         />
-        <div class="review-modal__stars" role="radiogroup" aria-label="Rating out of 5 stars">
+        <div class="review-modal__stars" role="radiogroup" [attr.aria-label]="'planDetail.review.ratingAria' | translate">
           @for (i of [1, 2, 3, 4, 5]; track i) {
             <button
               type="button"
@@ -409,7 +411,7 @@
               [class.review-modal__star--filled]="i <= reviewRating()"
               role="radio"
               [attr.aria-checked]="i === reviewRating()"
-              [attr.aria-label]="i + (i > 1 ? ' stars' : ' star')"
+              [attr.aria-label]="'planDetail.review.starLabel' | translate: { count: i }"
               (click)="setReviewRating(i)"
             >
               <span class="material-symbols-outlined" aria-hidden="true">star</span>
@@ -417,20 +419,20 @@
           }
         </div>
         <ui-text-field
-          label="Comment (optional)"
+          [label]="'planDetail.review.commentLabel' | translate"
           formControlName="comment"
           [multiline]="true"
           [errorMessage]="
             reviewForm.get('comment')!.touched && reviewForm.get('comment')!.invalid
-              ? 'Comment must be 1000 characters or fewer.'
+              ? ('planDetail.review.commentError' | translate)
               : null
           "
         />
         <p class="text-label-sm review-modal__counter">{{ reviewForm.value.comment?.length ?? 0 }}/1000</p>
         <div class="event-plan-detail-modal__actions">
-          <ui-button variant="outline" type="button" (click)="closeReview()">Cancel</ui-button>
+          <ui-button variant="outline" type="button" (click)="closeReview()">{{ 'common.cancel' | translate }}</ui-button>
           <ui-button type="submit" [loading]="reviewSubmitting()">
-            {{ reviewTarget()?.reviewId ? 'Save changes' : 'Submit review' }}
+            {{ (reviewTarget()?.reviewId ? 'planDetail.review.save' : 'planDetail.review.submit') | translate }}
           </ui-button>
         </div>
       </form>

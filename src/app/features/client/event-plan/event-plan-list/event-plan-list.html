@@ -3,21 +3,21 @@
     <div>
       <p class="text-label-sm event-plan-page__eyebrow">
         <span class="material-symbols-outlined">event_note</span>
-        My Events
+        {{ 'planList.eyebrow' | translate }}
       </p>
-      <h3 class="text-headline-sm">My Event Plans</h3>
-      <p class="text-body-md">Keep track of the events you're planning on Planura.</p>
+      <h3 class="text-headline-sm">{{ 'nav.myEventPlans' | translate }}</h3>
+      <p class="text-body-md">{{ 'planList.subtitle' | translate }}</p>
     </div>
     <ui-button [fullWidth]="false" (click)="createPlan()">
       <span class="material-symbols-outlined">add</span>
-      Create plan
+      {{ 'planList.createPlan' | translate }}
     </ui-button>
   </div>
 
   @if (bookingSuccess()) {
     <ui-alert-banner
       variant="success"
-      message="Booking request sent! The vendor will respond soon."
+      [message]="'planList.bookingSuccess' | translate"
     />
   }
 
@@ -25,14 +25,14 @@
     <div class="event-plan-page__filter-banner animate-fade-up">
       <span class="material-symbols-outlined">event_upcoming</span>
       @if (upcomingOnly()) {
-        <span class="text-body-md">Showing upcoming event plans only.</span>
+        <span class="text-body-md">{{ 'planList.filter.upcomingOnly' | translate }}</span>
         <button class="event-plan-page__filter-clear" type="button" (click)="toggleUpcomingFilter()">
-          View all
+          {{ 'dashboard.viewAll' | translate }}
         </button>
       } @else {
-        <span class="text-body-md">Showing all event plans.</span>
+        <span class="text-body-md">{{ 'planList.filter.all' | translate }}</span>
         <button class="event-plan-page__filter-clear" type="button" (click)="toggleUpcomingFilter()">
-          Show upcoming only
+          {{ 'planList.filter.showUpcoming' | translate }}
         </button>
       }
     </div>
@@ -43,17 +43,17 @@
   @if (loading()) {
     <div class="event-plan-page__state animate-fade-up">
       <span class="material-symbols-outlined event-plan-page__state-icon skeleton-icon">hourglass_top</span>
-      <p class="text-body-md event-plan-page__empty">Loading your event plans...</p>
+      <p class="text-body-md event-plan-page__empty">{{ 'planList.loading' | translate }}</p>
     </div>
   } @else if (displayedPlans().length === 0) {
     <div class="card-luxe luxe-shadow event-plan-page__empty-card animate-fade-up stagger-1">
       <span class="material-symbols-outlined event-plan-page__state-icon">event_note</span>
       @if (upcomingOnly()) {
-        <p class="text-body-md">No upcoming event plans right now.</p>
-        <ui-button [fullWidth]="false" variant="outline" (click)="toggleUpcomingFilter()">View all plans</ui-button>
+        <p class="text-body-md">{{ 'planList.empty.upcoming' | translate }}</p>
+        <ui-button [fullWidth]="false" variant="outline" (click)="toggleUpcomingFilter()">{{ 'planList.empty.viewAllPlans' | translate }}</ui-button>
       } @else {
-        <p class="text-body-md">No event plans yet — create your first.</p>
-        <ui-button [fullWidth]="false" (click)="createPlan()">Create plan</ui-button>
+        <p class="text-body-md">{{ 'planList.empty.none' | translate }}</p>
+        <ui-button [fullWidth]="false" (click)="createPlan()">{{ 'planList.createPlan' | translate }}</ui-button>
       }
     </div>
   } @else {
@@ -76,7 +76,7 @@
             </span>
             <span>
               <span class="material-symbols-outlined">groups</span>
-              {{ plan.guestCount }} guests
+              {{ plan.guestCount }} {{ 'dashboard.guests' | translate }}
             </span>
             <span>
               <span class="material-symbols-outlined">payments</span>
@@ -85,15 +85,15 @@
           </div>
           <div class="event-plan-card__actions">
             <ui-button variant="outline" [fullWidth]="false" (click)="viewPlan(plan)">
-              View
+              {{ 'common.view' | translate }}
             </ui-button>
             <ui-button [fullWidth]="false" (click)="bookVendors(plan)">
-              Add bookings
+              {{ 'planList.addBookings' | translate }}
             </ui-button>
             <button
               class="icon-btn icon-btn--danger"
               type="button"
-              title="Delete"
+              [title]="'common.delete' | translate"
               [disabled]="deletingId() === plan.id"
               (click)="deletePlan(plan)"
             >
@@ -109,10 +109,10 @@
 @if (deleteTarget(); as target) {
   <ui-confirm-dialog
     icon="delete"
-    title="Delete this event plan?"
-    [message]="'Delete \'' + target.title + '\'? This can not be undone.'"
-    confirmLabel="Delete"
-    cancelLabel="Cancel"
+    [title]="'planList.deleteTitle' | translate"
+    [message]="'planList.deleteMessage' | translate: { title: target.title }"
+    [confirmLabel]="'common.delete' | translate"
+    [cancelLabel]="'common.cancel' | translate"
     variant="danger"
     [loading]="deletingId() === target.id"
     (confirmed)="confirmDelete()"

@@ -1,12 +1,12 @@
 <div class="client-dashboard">
   <div class="client-dashboard__header animate-fade-up">
     <div>
-      <h1 class="text-headline-md">Welcome back</h1>
-      <p class="text-body-md">Here's what's happening with your events.</p>
+      <h1 class="text-headline-md">{{ 'dashboard.welcome' | translate }}</h1>
+      <p class="text-body-md">{{ 'dashboard.subtitle' | translate }}</p>
     </div>
     <ui-button [fullWidth]="false" (click)="goToNewPlan()">
       <span class="material-symbols-outlined">add</span>
-      New Event Plan
+      {{ 'nav.title.newEventPlan' | translate }}
     </ui-button>
   </div>
 
@@ -17,7 +17,7 @@
       <span class="client-dashboard__stat-icon material-symbols-outlined" aria-hidden="true">event_note</span>
       <span class="client-dashboard__stat-body">
         <span class="client-dashboard__stat-value">{{ totalPlans() }}</span>
-        <span class="client-dashboard__stat-label">Event Plans</span>
+        <span class="client-dashboard__stat-label">{{ 'dashboard.stat.plans' | translate }}</span>
       </span>
     </button>
     <button class="client-dashboard__stat hover-lift" type="button" (click)="goToUpcoming()">
@@ -26,7 +26,7 @@
       </span>
       <span class="client-dashboard__stat-body">
         <span class="client-dashboard__stat-value">{{ upcomingCount() }}</span>
-        <span class="client-dashboard__stat-label">Upcoming</span>
+        <span class="client-dashboard__stat-label">{{ 'dashboard.stat.upcoming' | translate }}</span>
       </span>
     </button>
   </div>
@@ -36,12 +36,12 @@
       <div class="client-dashboard__panel-header">
         <span class="client-dashboard__panel-icon material-symbols-outlined" aria-hidden="true">event</span>
         <div class="client-dashboard__panel-heading">
-          <h3 class="text-headline-sm">Your Event Plans</h3>
-          <p class="text-label-sm client-dashboard__panel-sub">Everything you're currently planning</p>
+          <h3 class="text-headline-sm">{{ 'dashboard.yourPlans' | translate }}</h3>
+          <p class="text-label-sm client-dashboard__panel-sub">{{ 'dashboard.yourPlansSub' | translate }}</p>
         </div>
         @if (plans().length > 0) {
           <button class="client-dashboard__view-all" type="button" (click)="goToPlans()">
-            View all
+            {{ 'dashboard.viewAll' | translate }}
             <span class="material-symbols-outlined">arrow_forward</span>
           </button>
         }
@@ -65,9 +65,9 @@
               celebration
             </span>
           </div>
-          <h4 class="text-headline-sm">No event plans yet</h4>
-          <p class="text-body-md">Create your first event plan to start bringing your vision to life.</p>
-          <ui-button [fullWidth]="false" (click)="goToNewPlan()">Create your first event plan</ui-button>
+          <h4 class="text-headline-sm">{{ 'dashboard.empty.title' | translate }}</h4>
+          <p class="text-body-md">{{ 'dashboard.empty.subtitle' | translate }}</p>
+          <ui-button [fullWidth]="false" (click)="goToNewPlan()">{{ 'dashboard.empty.cta' | translate }}</ui-button>
         </div>
       } @else {
         <div class="client-dashboard__project-list">
@@ -81,7 +81,7 @@
               <span class="client-dashboard__project-info">
                 <span class="text-label-md client-dashboard__project-title">{{ plan.title }}</span>
                 <span class="text-label-sm client-dashboard__project-meta">
-                  {{ plan.eventDate | date: 'mediumDate' }} · {{ plan.city }} · {{ plan.guestCount }} guests
+                  {{ plan.eventDate | date: 'mediumDate' }} · {{ plan.city }} · {{ plan.guestCount }} {{ 'dashboard.guests' | translate }}
                 </span>
               </span>
               <span class="material-symbols-outlined client-dashboard__project-chevron" aria-hidden="true">
@@ -97,14 +97,14 @@
       <section class="client-dashboard__panel">
         <div class="client-dashboard__panel-header client-dashboard__panel-header--compact">
           <span class="client-dashboard__panel-icon material-symbols-outlined" aria-hidden="true">bolt</span>
-          <h3 class="text-headline-sm">Quick Actions</h3>
+          <h3 class="text-headline-sm">{{ 'dashboard.quickActions' | translate }}</h3>
         </div>
         <div class="client-dashboard__actions">
           <button class="client-dashboard__action" type="button" (click)="goToNewPlan()">
             <span class="client-dashboard__action-icon material-symbols-outlined" aria-hidden="true">event</span>
             <span class="client-dashboard__action-body">
-              <span class="text-label-md">Plan an event</span>
-              <span class="text-label-sm client-dashboard__action-sub">Start a new event plan</span>
+              <span class="text-label-md">{{ 'dashboard.action.plan' | translate }}</span>
+              <span class="text-label-sm client-dashboard__action-sub">{{ 'dashboard.action.planSub' | translate }}</span>
             </span>
             <span class="material-symbols-outlined client-dashboard__action-chevron" aria-hidden="true">
               chevron_right
@@ -113,8 +113,8 @@
           <a class="client-dashboard__action" routerLink="/client/vendors">
             <span class="client-dashboard__action-icon material-symbols-outlined" aria-hidden="true">storefront</span>
             <span class="client-dashboard__action-body">
-              <span class="text-label-md">Browse vendors</span>
-              <span class="text-label-sm client-dashboard__action-sub">Find the right team</span>
+              <span class="text-label-md">{{ 'dashboard.action.browse' | translate }}</span>
+              <span class="text-label-sm client-dashboard__action-sub">{{ 'dashboard.action.browseSub' | translate }}</span>
             </span>
             <span class="material-symbols-outlined client-dashboard__action-chevron" aria-hidden="true">
               chevron_right
@@ -125,8 +125,8 @@
               event_available
             </span>
             <span class="client-dashboard__action-body">
-              <span class="text-label-md">My bookings</span>
-              <span class="text-label-sm client-dashboard__action-sub">Track confirmations</span>
+              <span class="text-label-md">{{ 'dashboard.action.bookings' | translate }}</span>
+              <span class="text-label-sm client-dashboard__action-sub">{{ 'dashboard.action.bookingsSub' | translate }}</span>
             </span>
             <span class="material-symbols-outlined client-dashboard__action-chevron" aria-hidden="true">
               chevron_right
@@ -138,8 +138,8 @@
       <section class="client-dashboard__panel client-dashboard__tip">
         <span class="client-dashboard__tip-icon material-symbols-outlined" aria-hidden="true">tips_and_updates</span>
         <p class="text-body-md">
-          <strong>Tip —</strong>
-          add style notes to your event plan to help vendors tailor their proposals to you.
+          <strong>{{ 'dashboard.tipLabel' | translate }}</strong>
+          {{ 'dashboard.tip' | translate }}
         </p>
       </section>
     </aside>

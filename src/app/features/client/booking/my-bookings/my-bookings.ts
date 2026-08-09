@@ -1,6 +1,7 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { catchError, forkJoin, of } from 'rxjs';
 import { AlertBanner } from '../../../../shared/ui/alert-banner/alert-banner';
 import { Button } from '../../../../shared/ui/button/button';
@@ -28,7 +29,7 @@ import { VendorService } from '../../../../core/services/vendor.service';
 @Component({
   selector: 'app-my-bookings',
   standalone: true,
-  imports: [AlertBanner, Button, DocumentDownload, StatusBadge, DatePipe, DecimalPipe],
+  imports: [AlertBanner, Button, DocumentDownload, StatusBadge, DatePipe, DecimalPipe, TranslatePipe],
   templateUrl: './my-bookings.html',
   styleUrl: './my-bookings.css',
 })
